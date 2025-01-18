@@ -9,8 +9,8 @@ using System.ComponentModel;
 public class PlayerData
 {
     public double highestWave=0;
-    public float volumeMusic=1;
-    public float volumeVFX=1;
+    public bool hasBGM;
+    public bool hasSFX;
 }
 
 public class DataGamePlay:MonoBehaviour

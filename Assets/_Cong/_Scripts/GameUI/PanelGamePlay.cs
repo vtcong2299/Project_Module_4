@@ -13,7 +13,7 @@ public class PanelGamePlay : MonoBehaviour
     }
     void ClickPauseButton()
     {
-        AudioManager.Instance.ClickButton();
+        AudioManager.Instance.SoundClickButton();
         UIManager.Instance.OnEnablePanelPauseGame();
     }
 }
