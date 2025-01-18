@@ -16,7 +16,6 @@ public class GroundUnit : MonoBehaviour, IOnGameStates
             if (obj is IMapGenerattable generator)
             {
                 mapGenerator = generator;
-                Debug.Log(mapGenerator);
                 return;
             }
         }
@@ -24,7 +23,6 @@ public class GroundUnit : MonoBehaviour, IOnGameStates
 
     private void OnTriggerEnter(Collider other)
     {
-        GroundGenerator.instance.GenerateUnits(() => transform.position);
-        //mapGenerator.GenerateUnits(() => transform.position);
+        mapGenerator.GenerateUnits(() => transform.position);
     }
 }
