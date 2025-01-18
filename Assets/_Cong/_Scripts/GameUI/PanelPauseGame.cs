@@ -19,23 +19,23 @@ public class PanelPauseGame : MonoBehaviour
     }
     void ClickResumeButton()
     {
-        AudioManager.Instance.ClickButton();
+        AudioManager.Instance.SoundClickButton();
         UIManager.Instance.OnDisablePanelPauseGame();
     }
     void ClickQuitButton()
     {
-        AudioManager.Instance.ClickButton();
+        AudioManager.Instance.SoundClickButton();
         UIManager.Instance.OnEnablePanelQuitGame();
     }
     void ClickOptionsButton()
     {
-        AudioManager.Instance.ClickButton();
+        AudioManager.Instance.SoundClickButton();
         UIManager.Instance.OnEnablePanelOptions();
         UIManager.Instance.OnDisablePanelPauseGame();
     }
     void ClickRestartButton()
     {
-        AudioManager.Instance.ClickButton();
+        AudioManager.Instance.SoundClickButton();
         
     }
 }

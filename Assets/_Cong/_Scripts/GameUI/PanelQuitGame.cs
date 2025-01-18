@@ -15,12 +15,12 @@ public class PanelQuitGame : MonoBehaviour
     }
     void ClickNoButton()
     {
-        AudioManager.Instance.ClickButton();
+        AudioManager.Instance.SoundClickButton();
         UIManager.Instance.OnDisablePanelQuitGame();
     }
     void ClickYesButton()
     {
-        AudioManager.Instance.ClickButton();
+        AudioManager.Instance.SoundClickButton();
 
     }
 }
