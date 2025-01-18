@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour, IOnGameStates
+public class GameManager : Singleton<GameManager>, IOnGameStates
 {
     public static GameManager instance;
 
@@ -10,25 +10,30 @@ public class GameManager : MonoBehaviour, IOnGameStates
     List<IOnGameStates> gameElements;
     [SerializeField]
     Initializer initializer;
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    public DataGamePlay dataGamePlay;
+    public PlayerData playerData;
+    //private void Awake()
+    //{
+    //    if (instance == null)
+    //    {
+    //        instance = this;
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
-    private void OnDisable()
-    {
-        instance = null;
-    }
+    //private void OnDisable()
+    //{
+    //    instance = null;
+    //}
 
     private void Start()
     {
+        dataGamePlay.StartDataGamePlay();
+        LoadDataGame();
+        SetPanelOptions();
         initializer.InjectAllAtGameStart();
         SetGameState(GameState.StageStart);
     }
@@ -68,10 +73,10 @@ public class GameManager : MonoBehaviour, IOnGameStates
 
     void Iterate<T>(List<T> instances, Action<T> Invoke)
     {
-        foreach (T instance in instances)
-        {
-            Invoke(instance);
-        }
+        //foreach (T instance in instances)
+        //{
+        //    Invoke(instance);
+        //}
     }
 
     public void OnGameStart(params object[] parameter)
@@ -112,5 +117,36 @@ public class GameManager : MonoBehaviour, IOnGameStates
         {
             damageTaker.BeAttacked(attacker._damage);
         }
+    }
+    public void LoadDataGame()
+    {
+        playerData = dataGamePlay.LoadData();
+    }
+    public void SaveDataGame()
+    {
+        if (dataGamePlay != null)
+        {
+            dataGamePlay.SaveData(playerData);
+        }
+    }
+    void SetPanelOptions()
+    {
+        if (playerData.hasBGM)
+        {
+            UIManager.Instance.panelOption.OnBGM();
+        }
+        else
+        {
+            UIManager.Instance.panelOption.OffBGM();
+        }
+        if (playerData.hasSFX)
+        {
+            UIManager.Instance.panelOption.OnSFX();
+        }
+        else
+        {
+            UIManager.Instance.panelOption.OffSFX();
+        }
+
     }
 }

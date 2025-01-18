@@ -13,7 +13,7 @@ public class PlayerData
     public bool hasSFX;
 }
 
-public class DataGamePlay:MonoBehaviour
+public class DataGamePlay:Singleton<DataGamePlay>
 {
     private string dataPath;
 

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
+    public PanelOption panelOption;
     [SerializeField] GameObject panelGamePlay;
     [SerializeField] GameObject panelPauseGame;
     [SerializeField] GameObject panelQuitGame;
