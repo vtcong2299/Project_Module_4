@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIManager : Singleton<UIManager>
 {
     public PanelOption panelOption;
+    public PanelGamePlay panelGP;
     [SerializeField] GameObject panelGamePlay;
     [SerializeField] GameObject panelPauseGame;
     [SerializeField] GameObject panelQuitGame;
@@ -24,10 +25,6 @@ public class UIManager : Singleton<UIManager>
     public bool hasPanelBuff;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            OnEnablePanelPowerUp();
-        }
         if (Input.GetKeyDown(KeyCode.S))
         {
             OnEnablePanelGameOver();
@@ -60,12 +57,12 @@ public class UIManager : Singleton<UIManager>
     public void OnEnablePanelPowerUp()
     {
         Show(panelPowerUp, canvasGroupPowerUp);
-        hasPanelBuff =true;
+        hasPanelBuff =true;        
     }
     public void OnDisablePanelPowerUp()
     {
         Hide(panelPowerUp, canvasGroupPowerUp);
-        hasPanelBuff = false;
+        hasPanelBuff = false;        
     }
     public void OnEnablePanelGameOver()
     {

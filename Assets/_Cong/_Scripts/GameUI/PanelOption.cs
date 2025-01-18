@@ -28,7 +28,7 @@ public class PanelOption : MonoBehaviour
     void ClickMusicButton()
     {
         AudioManager.Instance.SoundClickButton();
-        if (!GameManager.Instance.playerData.hasBGM)
+        if (!GameManager.Instance.gameData.hasBGM)
         {
             OnBGM();
         }
@@ -40,7 +40,7 @@ public class PanelOption : MonoBehaviour
     void ClickSFXButton()
     {
         AudioManager.Instance.SoundClickButton();
-        if (!GameManager.Instance.playerData.hasSFX)
+        if (!GameManager.Instance.gameData.hasSFX)
         {
             OnSFX();
         }
@@ -51,25 +51,25 @@ public class PanelOption : MonoBehaviour
     }
     public void OnBGM()
     {
-        GameManager.Instance.playerData.hasBGM = true;
+        GameManager.Instance.gameData.hasBGM = true;
         AudioManager.Instance.SetVolumAudioBGM(true);
         black1.SetActive(false);
     }
     public void OffBGM()
     {
-        GameManager.Instance.playerData.hasBGM = false;
+        GameManager.Instance.gameData.hasBGM = false;
         AudioManager.Instance.SetVolumAudioBGM(false);
         black1.SetActive(true);
     }
     public void OnSFX()
     {
-        GameManager.Instance.playerData.hasSFX = true;
+        GameManager.Instance.gameData.hasSFX = true;
         AudioManager.Instance.SetVolumAudioSFX(true);
         black2.SetActive(false);
     }
     public void OffSFX()
     {
-        GameManager.Instance.playerData.hasSFX = false;
+        GameManager.Instance.gameData.hasSFX = false;
         AudioManager.Instance.SetVolumAudioSFX(false);
         black2.SetActive(true);
     }
