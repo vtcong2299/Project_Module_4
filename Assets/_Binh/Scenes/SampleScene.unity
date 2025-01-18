@@ -732,6 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d59bb619cf92441b4712c1d92259a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panelOption: {fileID: 1062839598}
   panelGamePlay: {fileID: 1524466522}
   panelPauseGame: {fileID: 210928949}
   panelQuitGame: {fileID: 1945843636}
@@ -2850,6 +2851,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841399689}
   m_CullTransparentMesh: 1
+--- !u!1 &868846816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 868846817}
+  - component: {fileID: 868846818}
+  m_Layer: 0
+  m_Name: DataGamePlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &868846817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868846816}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &868846818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868846816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66101e163bc9704a85a447604d0ae19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &885095150
 GameObject:
   m_ObjectHideFlags: 0
@@ -4814,6 +4859,7 @@ MonoBehaviour:
   audioBGM: {fileID: 1171942440}
   audioSFX: {fileID: 1283273191}
   clickButtonClip: {fileID: 8300000, guid: 8c5e5f59e51d23e46b060deab817bccf, type: 3}
+  bgmClip: {fileID: 8300000, guid: 4fb99bf19393dac49b144c1eb7be0295, type: 3}
 --- !u!1 &1114296702
 GameObject:
   m_ObjectHideFlags: 0
@@ -4863,6 +4909,11 @@ MonoBehaviour:
     - {fileID: 1114296702}
     - {fileID: 1154175021}
     - {fileID: 190836153}
+  dataGamePlay: {fileID: 868846818}
+  playerData:
+    highestWave: 0
+    hasBGM: 0
+    hasSFX: 0
 --- !u!1 &1116076281
 GameObject:
   m_ObjectHideFlags: 0
@@ -11916,3 +11967,4 @@ SceneRoots:
   - {fileID: 1841230073}
   - {fileID: 7269994}
   - {fileID: 1385061501}
+  - {fileID: 868846817}

@@ -4,30 +4,12 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>, IOnGameStates
 {
-    public static GameManager instance;
-
     GameState gameState;
     List<IOnGameStates> gameElements;
     [SerializeField]
     Initializer initializer;
     public DataGamePlay dataGamePlay;
     public PlayerData playerData;
-    //private void Awake()
-    //{
-    //    if (instance == null)
-    //    {
-    //        instance = this;
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
-
-    //private void OnDisable()
-    //{
-    //    instance = null;
-    //}
 
     private void Start()
     {
@@ -73,10 +55,10 @@ public class GameManager : Singleton<GameManager>, IOnGameStates
 
     void Iterate<T>(List<T> instances, Action<T> Invoke)
     {
-        //foreach (T instance in instances)
-        //{
-        //    Invoke(instance);
-        //}
+        foreach (T instance in instances)
+        {
+            Invoke(instance);
+        }
     }
 
     public void OnGameStart(params object[] parameter)

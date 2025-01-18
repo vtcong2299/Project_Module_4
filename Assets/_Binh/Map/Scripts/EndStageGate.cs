@@ -4,6 +4,6 @@ public class EndStageGate : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.instance.SetGameState(GameState.StageStart);
+        GameManager.Instance.SetGameState(GameState.StageStart);
     }
 }
