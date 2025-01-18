@@ -40,19 +40,19 @@ public class GameManager : MonoBehaviour, IOnGameStates
             case GameState.None:
                 return;
             case GameState.Running:
-                Iterate(gameElements, instance => () => instance.OnGameRunning());
+                Iterate(gameElements, instance => instance.OnGameRunning());
                 return;
             case GameState.Pause:
-                Iterate(gameElements, instance => () => instance.OnGamePause());
+                Iterate(gameElements, instance => instance.OnGamePause());
                 return;
             case GameState.GameOver:
-                Iterate(gameElements, instance => () => instance.OnGameOver());
+                Iterate(gameElements, instance => instance.OnGameOver());
                 return;
             case GameState.StageStart:
-                Iterate(gameElements, instance => () => instance.OnStageStart());
+                Iterate(gameElements, instance => instance.OnStageStart());
                 return;
             case GameState.StageOver:
-                Iterate(gameElements, instance => () => instance.OnStageOver());
+                Iterate(gameElements, instance => instance.OnStageOver());
                 return;
         }
     }
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour, IOnGameStates
         }
     }
 
-    public void Iterate<T>(List<T> instances, Func<T, Action> Invoke)
+    void Iterate<T>(List<T> instances, Action<T> Invoke)
     {
         foreach (T instance in instances)
         {
