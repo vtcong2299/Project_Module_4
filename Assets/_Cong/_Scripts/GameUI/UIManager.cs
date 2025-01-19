@@ -32,53 +32,53 @@ public class UIManager : Singleton<UIManager>
     }
     public void OnEnablePanelGamePlay()
     {
-        Show(panelGamePlay, canvasGroupGamePlay);
+        Show(panelGamePlay, canvasGroupGamePlay, false);
     }
     public void OnDisablePanelGamePlay()
     {
-        Hide(panelGamePlay, canvasGroupGamePlay);
+        Hide(panelGamePlay, canvasGroupGamePlay, false);
     }
     public void OnEnablePanelPauseGame()
     {
-        Show(panelPauseGame, canvasGroupPauseGame);
+        Show(panelPauseGame, canvasGroupPauseGame, true);
     }
     public void OnDisablePanelPauseGame()
     {
-        Hide(panelPauseGame, canvasGroupPauseGame);
+        Hide(panelPauseGame, canvasGroupPauseGame, true);
     }
     public void OnEnablePanelQuitGame()
     {
-        Show(panelQuitGame, canvasGroupQuitGame);
+        Show(panelQuitGame, canvasGroupQuitGame, false);
     }
     public void OnDisablePanelQuitGame()
     {
-        Hide(panelQuitGame, canvasGroupQuitGame);
+        Hide(panelQuitGame, canvasGroupQuitGame, false);
     }
     public void OnEnablePanelPowerUp()
     {
-        Show(panelPowerUp, canvasGroupPowerUp);
+        Show(panelPowerUp, canvasGroupPowerUp, true);
         hasPanelBuff =true;        
     }
     public void OnDisablePanelPowerUp()
     {
-        Hide(panelPowerUp, canvasGroupPowerUp);
+        Hide(panelPowerUp, canvasGroupPowerUp, true);
         hasPanelBuff = false;        
     }
     public void OnEnablePanelGameOver()
     {
-        Show(panelGameOver, canvasGroupGameOver);
+        Show(panelGameOver, canvasGroupGameOver, true);
     }
     public void OnDisablePanelGameOver()
     {
-        Hide(panelGameOver, canvasGroupGameOver);
+        Hide(panelGameOver, canvasGroupGameOver, true);
     }
     public void OnEnablePanelOptions()
     {
-        Show(panelOptions, canvasGroupOptions);
+        Show(panelOptions, canvasGroupOptions, false);
     }
     public void OnDisablePanelOptions()
     {
-        Hide(panelOptions, canvasGroupOptions);
+        Hide(panelOptions, canvasGroupOptions, false);
     }
     public void AddToBuffList(ConfigPowerUp buff)
     {      
@@ -102,15 +102,25 @@ public class UIManager : Singleton<UIManager>
     {
         buffList.Clear();
     }
-    public void Show(GameObject panel, CanvasGroup canvasGroup)
+    public void Show(GameObject panel, CanvasGroup canvasGroup, bool pause)
     {
         canvasGroup.alpha= 0;
         panel.SetActive(true);
-        canvasGroup.DOFade(1, 0.5f);
+        canvasGroup.DOFade(1, 0.5f).OnComplete(() =>
+        {
+            if (pause)
+            {
+                Time.timeScale = 0;
+            }
+        });
         
     }
-    public void Hide(GameObject panel, CanvasGroup canvasGroup)
+    public void Hide(GameObject panel, CanvasGroup canvasGroup, bool resume)
     {
+        if (resume)
+        {
+            Time.timeScale = 1;
+        }
         canvasGroup.DOFade(0, 0.3f)
             .OnComplete(()=>DisablePanel(panel));        
     }
