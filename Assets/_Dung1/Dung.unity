@@ -1173,7 +1173,7 @@ MonoBehaviour:
   currentRound: 0
   waveInRound: 0
   currentWave: 0
-  enemyInWave: 0
+  enemyInWave: 10
   enemyAlive: 0
   enemyPrefabs:
   - {fileID: 7185309111433620856, guid: 8d4db31b703cfba4bb857c9333903bfe, type: 3}
