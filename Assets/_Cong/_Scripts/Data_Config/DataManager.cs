@@ -15,16 +15,19 @@ public class DataManager : Singleton<DataManager>
     public void ChooseBuff1()
     {
         buff = buff1;
+        DataPlayer.Instance.AddPowerUp(buff);
         UIManager.Instance.AddToBuffList(buff);
     }
     public void ChooseBuff2()
     {
         buff = buff2;
+        DataPlayer.Instance.AddPowerUp(buff);
         UIManager.Instance.AddToBuffList(buff);
     }
     public void ChooseBuff3()
     {
         buff = buff3;
+        DataPlayer.Instance.AddPowerUp(buff);
         UIManager.Instance.AddToBuffList(buff);
     }
     public ConfigPowerUp GetConfigPowerUp()

@@ -2,7 +2,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "powerBuffConfig", menuName = "PowerBuff")]
 public class ConfigPowerUp : ScriptableObject
 {
-    public long iD;
     public int level;
     public Sprite iconBuff;
     public string namePowerUp;

@@ -1,0 +1,95 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DataPlayer : Singleton<DataPlayer>
+{
+    public int curentLevel;
+    [SerializeField] int levelMax = 15;
+    public float exp=0;
+    public float expMax;
+    [SerializeField] float[] exps = new float[15] { 25, 50, 100, 200, 400, 700,1200, 2000, 3000, 3200, 4500, 6000, 8000, 10500, 13000 };
+     
+    float damageDefault;
+    float hpDefault;
+    float attackSpeedDefault;
+    float moveSpeedDefault;
+    float armorDefault;
+    float lifeStealPercentDefault;
+
+    [SerializeField] float damageMax;
+    [SerializeField] float hpMax;
+    [SerializeField] float attackSpeedMax;
+    [SerializeField] float moveSpeedMax;
+    [SerializeField] float armorMax;
+    [SerializeField] float lifeStealPercentMax;
+    [SerializeField] float damagePercentIncreased = 0;
+    [SerializeField] float hpPercentIncreased = 0;
+    [SerializeField] float attackSpeedPercentIncreased = 0;
+    [SerializeField] float moveSpeedPercentIncreased = 0;
+    [SerializeField] float armorPercentIncreased = 0;
+
+    public void StartPlayerData()
+    {
+         damageDefault = GameManager.Instance.gameData.damageDefault;
+         hpDefault = GameManager.Instance.gameData.hpDefault;
+         attackSpeedDefault = GameManager.Instance.gameData.attackSpeedDefault;
+         moveSpeedDefault = GameManager.Instance.gameData.moveSpeedDefault;
+         armorDefault = GameManager.Instance.gameData.armorDefault;
+         lifeStealPercentDefault = GameManager.Instance.gameData.lifeStealPercentDefault;
+         ResetDataPlayer();
+        curentLevel = 1;
+    }
+    public void AddPowerUp(ConfigPowerUp buff)
+    {
+        damagePercentIncreased += buff.damage;
+        hpPercentIncreased += buff.hp;
+        attackSpeedPercentIncreased += buff.attackSpeed;
+        moveSpeedPercentIncreased += buff.moveSpeed;
+        armorPercentIncreased += buff.armor;
+        lifeStealPercentMax += buff.lifeSteal;
+        RecalculateStats();
+    }
+    public void ResetDataPlayer()
+    {
+        damageMax = damageDefault;
+        hpMax = hpDefault;
+        attackSpeedMax = attackSpeedDefault;
+        moveSpeedMax = moveSpeedDefault;
+        armorMax = armorDefault;
+        lifeStealPercentMax = lifeStealPercentDefault;
+        damagePercentIncreased = 0;
+        hpPercentIncreased = 0;
+        attackSpeedPercentIncreased = 0;
+        moveSpeedPercentIncreased = 0;
+        armorPercentIncreased = 0;
+    }
+    void RecalculateStats()
+    {
+        damageMax = damageDefault * ((damagePercentIncreased/100)+1);
+        hpMax = hpDefault * ((hpPercentIncreased / 100)+1);
+        attackSpeedMax = attackSpeedDefault * ((attackSpeedPercentIncreased / 100)+1);
+        moveSpeedMax = moveSpeedDefault * ((moveSpeedPercentIncreased / 100)+1);
+        armorMax = armorDefault * ((armorPercentIncreased / 100)+1);
+    }
+    public void LevelUp(float exp)
+    {
+        expMax = exps[curentLevel-1];
+        if (this.exp > expMax)
+        {
+            UIManager.Instance.OnEnablePanelPowerUp();
+            curentLevel++;
+            if (curentLevel >= levelMax)
+            {
+                curentLevel = levelMax;
+                return;
+            }
+            else
+            {
+                this.exp = 0;
+            }
+        }
+        if (UIManager.Instance.hasPanelBuff) return;
+        this.exp += exp;
+    }
+}

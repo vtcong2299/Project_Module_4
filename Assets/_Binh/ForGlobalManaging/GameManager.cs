@@ -4,35 +4,21 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>, IOnGameStates
 {
-    public static GameManager instance;
-
     GameState gameState;
     List<IOnGameStates> gameElements;
     [SerializeField]
     Initializer initializer;
-    public DataGamePlay dataGamePlay;
-    public PlayerData playerData;
-    //private void Awake()
-    //{
-    //    if (instance == null)
-    //    {
-    //        instance = this;
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
 
-    //private void OnDisable()
-    //{
-    //    instance = null;
-    //}
+    [Header("--------------------Cong--------------------")]    
+    public DataGamePlay dataGamePlay;
+    public GaneData gameData;
+
 
     private void Start()
     {
         dataGamePlay.StartDataGamePlay();
         LoadDataGame();
+        DataPlayer.Instance.StartPlayerData();
         SetPanelOptions();
         initializer.InjectAllAtGameStart();
         SetGameState(GameState.StageStart);
@@ -40,6 +26,7 @@ public class GameManager : Singleton<GameManager>, IOnGameStates
 
     private void Update()
     {
+        DataPlayer.Instance.LevelUp(1);
         switch (gameState)
         {
             case GameState.None:
@@ -73,10 +60,10 @@ public class GameManager : Singleton<GameManager>, IOnGameStates
 
     void Iterate<T>(List<T> instances, Action<T> Invoke)
     {
-        //foreach (T instance in instances)
-        //{
-        //    Invoke(instance);
-        //}
+        foreach (T instance in instances)
+        {
+            Invoke(instance);
+        }
     }
 
     public void OnGameStart(params object[] parameter)
@@ -118,20 +105,20 @@ public class GameManager : Singleton<GameManager>, IOnGameStates
             damageTaker.BeAttacked(attacker._damage);
         }
     }
-    public void LoadDataGame()
+    public void LoadDataGame() //Cong
     {
-        playerData = dataGamePlay.LoadData();
+        gameData = dataGamePlay.LoadData();
     }
-    public void SaveDataGame()
+    public void SaveDataGame() //Cong
     {
         if (dataGamePlay != null)
         {
-            dataGamePlay.SaveData(playerData);
+            dataGamePlay.SaveData(gameData);
         }
     }
-    void SetPanelOptions()
+    void SetPanelOptions() //Cong
     {
-        if (playerData.hasBGM)
+        if (gameData.hasBGM)
         {
             UIManager.Instance.panelOption.OnBGM();
         }
@@ -139,7 +126,7 @@ public class GameManager : Singleton<GameManager>, IOnGameStates
         {
             UIManager.Instance.panelOption.OffBGM();
         }
-        if (playerData.hasSFX)
+        if (gameData.hasSFX)
         {
             UIManager.Instance.panelOption.OnSFX();
         }

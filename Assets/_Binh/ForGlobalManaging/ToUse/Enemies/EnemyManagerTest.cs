@@ -92,7 +92,7 @@ public class EnemyManagerTest : MonoBehaviour, IOnGameStates, IOnEnemyDie
         enemyAlive--;
         if (currentWave == waveInRound)
         {
-            GameManager.instance.SetGameState(GameState.StageOver);
+            GameManager.Instance.SetGameState(GameState.StageOver);
             return;
         }
         if (enemyAlive == 0)

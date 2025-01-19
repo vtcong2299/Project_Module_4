@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GroundGenerator : MonoBehaviour, IMapGenerattable, IOnGameStates
 {
-    public static GroundGenerator instance;
-
     GameObject[] groundUnits;
     const string UNITS_PATH_IN_RESOURCES = "MapUnits";
     GameObject groundUnit;
@@ -14,39 +12,26 @@ public class GroundGenerator : MonoBehaviour, IMapGenerattable, IOnGameStates
     int inPoolCount;
     HashSet<Vector3> generateCoordinates;
     Vector3 pivotPosition = Vector3.zero;
-    int mapIndex/* = -1*/;
+    int mapIndex = -1;
     float offset;
     [SerializeField]
     int shell = 1;
 
     List<GameObject> outOfRegionUnits;
-    private void Awake()
+    public void OnGameStart(params object[] parameter)
     {
-        instance = this;
-
         groundUnits = Resources.LoadAll<GameObject>(UNITS_PATH_IN_RESOURCES);
         groundUnitPool = new List<GameObject>();
         poolObj = new GameObject("GroundUnitPool");
         generateCoordinates = new HashSet<Vector3>();
         outOfRegionUnits = new List<GameObject>();
         inPoolCount = shell * 2 + 1;
-        InitMap(groundUnits[mapIndex]);
     }
 
-    public void OnGameStart(params object[] parameter)
+    public void OnStageStart()
     {
-        //groundUnits = Resources.LoadAll<GameObject>(UNITS_PATH_IN_RESOURCES);
-        //groundUnitPool = new List<GameObject>();
-        //poolObj = new GameObject("GroundUnitPool");
-        //generateCoordinates = new HashSet<Vector3>();
-        //outOfRegionUnits = new List<GameObject>();
-        //inPoolCount = shell * 2 + 1;
+        ChangeMap();
     }
-
-    //public void OnStageStart()
-    //{
-    //    ChangeMap();
-    //}
 
     void InitMap(GameObject currentGroundUnit)
     {
@@ -64,7 +49,7 @@ public class GroundGenerator : MonoBehaviour, IMapGenerattable, IOnGameStates
         for (int i = 0; i < inPoolCount; i++)
         {
             GameObject obj = Instantiate(groundUnit, poolObj.transform);
-            //obj.GetComponentInChildren<IOnGameStates>().OnGameStart(this);
+            obj.GetComponentInChildren<IOnGameStates>().OnGameStart(this);
             obj.SetActive(false);
             groundUnitPool.Add(obj);
         }
