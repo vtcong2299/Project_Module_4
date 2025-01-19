@@ -8,7 +8,7 @@ public class DataPlayer : Singleton<DataPlayer>
     [SerializeField] int levelMax = 15;
     public float exp=0;
     public float expMax;
-    [SerializeField] float[] exps = new float[15] { 25, 50, 100, 200, 400, 700,1200, 2000, 3000, 3200, 4500, 6000, 8000, 10500, 13000 };
+    [SerializeField] float[] exps = new float[] {};
      
     float damageDefault;
     float hpDefault;
