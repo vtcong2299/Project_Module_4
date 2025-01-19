@@ -29,7 +29,7 @@ public class GroundGenerator : MonoBehaviour, IMapGenerattable, IOnGameStart<int
         inPoolCount = shell * 2 + 1;
     };
 
-    public Action onStageStartAction => () => ChangeMap();
+    public Action onStageStartAction => () => SpawnMap();
 
     void InitMap(GameObject currentGroundUnit)
     {
@@ -150,7 +150,7 @@ public class GroundGenerator : MonoBehaviour, IMapGenerattable, IOnGameStart<int
         return false;
     }
 
-    public void ChangeMap()
+    public void SpawnMap()
     {
         mapIndex++;
         mapIndex %= groundUnits.Length;

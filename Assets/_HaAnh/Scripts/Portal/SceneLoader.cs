@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class SceneLoader : Singleton<SceneLoader>
 {
     public Animator fadeAnimator; // Animator của FadeCanvas
-    public string nextSceneName; // Tên scene cần load
     // Hàm gọi khi bắt đầu chuyển scene
    public void SetTriggerFadeIn()
     {
