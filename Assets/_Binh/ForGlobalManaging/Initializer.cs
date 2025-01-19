@@ -5,15 +5,17 @@ using UnityEngine;
 [Serializable]
 public class Initializer
 {
-    List<IOnGameStates> gameElements;
+    List<IOnGame> gameElements;
     [SerializeField]
     GameObject[] gameElementObjects;
     List<IOnEnemyDie> enemyDieDependencies;
     ITransformGettable transformProvider;
 
+    IOnGameStates statesRunner;
+
     public void InjectAllAtGameStart()
     {
-        gameElements = new List<IOnGameStates>();
+        gameElements = new List<IOnGame>();
         enemyDieDependencies = new List<IOnEnemyDie>();
         Init();
         InvokeStarts();
@@ -32,15 +34,17 @@ public class Initializer
                 enemyDieDependencies.Add(iOnEnemyDie);
             }
 
-            gameElements.AddRange(obj.GetComponents<IOnGameStates>());
+            gameElements.AddRange(obj.GetComponents<IOnGame>());
         }
     }
 
     void InvokeStarts()
     {
-        foreach (IOnGameStates element in gameElements)
-        {
-            element.OnGameStart(gameElements, enemyDieDependencies, transformProvider);
-        }
+        statesRunner = new GameStatesContext(gameElements);
+        statesRunner.OnGameStart(statesRunner);
+        statesRunner.OnGameStart(0);
+        statesRunner.OnGameStart(enemyDieDependencies);
+        statesRunner.OnGameStart(transformProvider);
+        
     }
 }

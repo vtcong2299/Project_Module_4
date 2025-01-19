@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GroundUnit : MonoBehaviour, IOnGameStates
+public class GroundUnit : MonoBehaviour
 {
     IMapGenerattable mapGenerator;
 
@@ -9,16 +9,9 @@ public class GroundUnit : MonoBehaviour, IOnGameStates
 
     public float _offset { get => offset; }
 
-    public void OnGameStart(params object[] parameter)
+    public void Active(IMapGenerattable generator)
     {
-        foreach (var obj in parameter)
-        {
-            if (obj is IMapGenerattable generator)
-            {
-                mapGenerator = generator;
-                return;
-            }
-        }
+        mapGenerator = generator;
     }
 
     private void OnTriggerEnter(Collider other)

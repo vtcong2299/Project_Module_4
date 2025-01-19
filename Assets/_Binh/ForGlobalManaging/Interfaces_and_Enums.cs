@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 #region Interfaces
@@ -29,13 +30,47 @@ public interface IMapGenerattable
 
 public interface IOnGameStates
 {
-    void OnGameStart(params object[] parameter);
-    void OnGameRunning() { }
-    void OnGamePause() { }
-    void OnStageStart() { }
-    void OnStageOver() { }
-    void OnGameOver() { }
+    void OnGameStart<T>(T parameter);
+    void OnGameRunning();
+    void OnGamePause();
+    void OnStageStart();
+    void OnStageOver();
+    void OnGameOver();
 }
+
+public interface IOnGame
+{ }
+
+public interface IOnGameStart<T> : IOnGame
+{
+    Action<T> onGameStartAction { get; }
+}
+
+public interface IOnGamePause : IOnGame
+{
+    Action onGamePauseAction { get; }
+}
+
+public interface IOnGameRunning : IOnGame
+{
+    Action onGameRunningAction { get; }
+}
+
+public interface IOnStageStart : IOnGame
+{
+    Action onStageStartAction { get; }
+}
+
+public interface IOnStageOver : IOnGame
+{
+    Action onStageOverAction { get; }
+}
+
+public interface IOnGameOver : IOnGame
+{
+    Action onGameOverAction { get; }
+}
+
 #endregion
 #region Enums
 public enum GameState

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundGenerator : MonoBehaviour, IMapGenerattable, IOnGameStates
+public class GroundGenerator : MonoBehaviour, IMapGenerattable, IOnGameStart<int>, IOnStageStart
 {
     GameObject[] groundUnits;
     const string UNITS_PATH_IN_RESOURCES = "MapUnits";
@@ -18,7 +18,8 @@ public class GroundGenerator : MonoBehaviour, IMapGenerattable, IOnGameStates
     int shell = 1;
 
     List<GameObject> outOfRegionUnits;
-    public void OnGameStart(params object[] parameter)
+
+    public Action<int> onGameStartAction => param =>
     {
         groundUnits = Resources.LoadAll<GameObject>(UNITS_PATH_IN_RESOURCES);
         groundUnitPool = new List<GameObject>();
@@ -26,12 +27,9 @@ public class GroundGenerator : MonoBehaviour, IMapGenerattable, IOnGameStates
         generateCoordinates = new HashSet<Vector3>();
         outOfRegionUnits = new List<GameObject>();
         inPoolCount = shell * 2 + 1;
-    }
+    };
 
-    public void OnStageStart()
-    {
-        ChangeMap();
-    }
+    public Action onStageStartAction => () => ChangeMap();
 
     void InitMap(GameObject currentGroundUnit)
     {
@@ -49,7 +47,7 @@ public class GroundGenerator : MonoBehaviour, IMapGenerattable, IOnGameStates
         for (int i = 0; i < inPoolCount; i++)
         {
             GameObject obj = Instantiate(groundUnit, poolObj.transform);
-            obj.GetComponentInChildren<IOnGameStates>().OnGameStart(this);
+            obj.GetComponentInChildren<GroundUnit>().Active(this);
             obj.SetActive(false);
             groundUnitPool.Add(obj);
         }

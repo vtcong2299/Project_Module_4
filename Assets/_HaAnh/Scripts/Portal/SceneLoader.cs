@@ -4,19 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : Singleton<SceneLoader>
 {
     public Animator fadeAnimator; // Animator của FadeCanvas
     public string nextSceneName; // Tên scene cần load
-    public static SceneLoader Instance;
-    private void OnEnable()
-    {
-        Instance = this;
-    }
-    private void OnDisable()
-    {
-        Instance = null;
-    }
     // Hàm gọi khi bắt đầu chuyển scene
    public void SetTriggerFadeIn()
     {

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>, IOnGameStates
+public class GameManager : Singleton<GameManager>, IOnGameOver, IOnGamePause, IOnGameStart<IOnGameStates>, IOnStageOver, IOnStageStart
 {
     GameState gameState;
-    List<IOnGameStates> gameElements;
+    IOnGameStates gameRunner;
     [SerializeField]
     Initializer initializer;
 
@@ -13,6 +13,19 @@ public class GameManager : Singleton<GameManager>, IOnGameStates
     public DataGamePlay dataGamePlay;
     public GaneData gameData;
 
+    public Action onGameOverAction => () => SetGameState(GameState.None);
+
+    public Action onGamePauseAction => () =>
+    {
+        Time.timeScale = 0;
+        SetGameState(GameState.None);
+    };
+
+    public Action onStageOverAction => () => SetGameState(GameState.Running);
+
+    public Action onStageStartAction => () => SetGameState(GameState.Running);
+
+    public Action<IOnGameStates> onGameStartAction => param => gameRunner = param;
 
     private void Start()
     {
@@ -32,19 +45,19 @@ public class GameManager : Singleton<GameManager>, IOnGameStates
             case GameState.None:
                 return;
             case GameState.Running:
-                Iterate(gameElements, instance => instance.OnGameRunning());
+                gameRunner.OnGameRunning();
                 return;
             case GameState.Pause:
-                Iterate(gameElements, instance => instance.OnGamePause());
+                gameRunner.OnGamePause();
                 return;
             case GameState.GameOver:
-                Iterate(gameElements, instance => instance.OnGameOver());
+                gameRunner.OnGameOver();
                 return;
             case GameState.StageStart:
-                Iterate(gameElements, instance => instance.OnStageStart());
+                gameRunner.OnStageStart();
                 return;
             case GameState.StageOver:
-                Iterate(gameElements, instance => instance.OnStageOver());
+                gameRunner.OnStageOver();
                 return;
         }
     }
@@ -56,46 +69,6 @@ public class GameManager : Singleton<GameManager>, IOnGameStates
         {
             Time.timeScale = 1;
         }
-    }
-
-    void Iterate<T>(List<T> instances, Action<T> Invoke)
-    {
-        foreach (T instance in instances)
-        {
-            Invoke(instance);
-        }
-    }
-
-    public void OnGameStart(params object[] parameter)
-    {
-        foreach (object obj in parameter)
-        {
-            if (obj is List<IOnGameStates> param)
-            {
-                gameElements = param;
-            }
-        }
-    }
-
-    public void OnGamePause()
-    {
-        Time.timeScale = 0;
-        SetGameState(GameState.None);
-    }
-
-    public void OnGameOver()
-    {
-        SetGameState(GameState.None);
-    }
-
-    public void OnStageStart()
-    {
-        SetGameState(GameState.Running);
-    }
-
-    public void OnStageOver()
-    {
-        SetGameState(GameState.Running);
     }
 
     public void OnAttack(CharacterBase attacker, CharacterBase damageTaker)
