@@ -39,7 +39,7 @@ public class GameManager : Singleton<GameManager>, IOnGameOver, IOnGamePause, IO
 
     private void Update()
     {
-        DataPlayer.Instance.LevelUp(1);
+        //DataPlayer.Instance.LevelUp(1);
         switch (gameState)
         {
             case GameState.None:
