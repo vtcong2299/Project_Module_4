@@ -10,9 +10,12 @@ public class TeleportPortal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Kiểm tra nếu đối tượng va chạm có tag là "Player"
-        SceneLoader.Instance.SetTriggerFadeIn();
-        Invoke("LoadTargetScene", 1);
-        SceneLoader.Instance.SetTriggerFadeOut();
+        if (other.CompareTag("Player"))
+        {
+            SceneLoader.Instance.SetTriggerFadeIn();
+            Invoke("LoadTargetScene", 1);
+            SceneLoader.Instance.SetTriggerFadeOut();
+        }
     }
 
     private void LoadTargetScene()
