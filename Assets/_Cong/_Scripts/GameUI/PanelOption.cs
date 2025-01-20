@@ -29,7 +29,7 @@ public class PanelOption : MonoBehaviour, IOnGameStart<IGameData>, IOnGameStart<
         AudioManager.Instance.SoundClickButton();
         UIManager.Instance.OnEnablePanelPauseGame();
         UIManager.Instance.OnDisablePanelOptions();
-        dataManipulator.SaveDataGame();
+        dataManipulator.SaveData();
     }
     void ClickMusicButton()
     {

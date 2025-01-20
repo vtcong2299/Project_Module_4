@@ -20,23 +20,27 @@ public class GaneData
 
 }
 
-public class DataGamePlay:Singleton<DataGamePlay>
+public class DataGamePlay : Singleton<DataGamePlay>, IGameData, IDataManipulator
 {
     private string dataPath;
+
+    GaneData gameData;
+
+    public GaneData data => gameData;
 
     public void StartDataGamePlay()
     {
         dataPath = Path.Combine(Application.persistentDataPath, "playerData.json");
-        LoadData(); //load khi khởi động
+        gameData = LoadData(); //load khi khởi động
     }
 
-    public void SaveData(GaneData data)
+    public void SaveData()
     {
-        string json = JsonUtility.ToJson(data); //chuyển data thành chuỗi json
+        string json = JsonUtility.ToJson(gameData); //chuyển data thành chuỗi json
             File.WriteAllText(dataPath, json); //tạo file nếu chưa tồn tại
     }
 
-    public GaneData LoadData()
+    GaneData LoadData()
     {
         if (File.Exists(dataPath))
         {

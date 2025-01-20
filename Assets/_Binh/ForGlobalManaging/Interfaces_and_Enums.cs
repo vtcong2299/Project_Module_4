@@ -34,7 +34,7 @@ public interface IGameData
 
 public interface IDataManipulator
 {
-    void SaveDataGame();
+    void SaveData();
 }
 
 public interface IOnGameStates

@@ -35,6 +35,14 @@ public class Initializer
             {
                 enemyDieDependencies.Add(iOnEnemyDie);
             }
+            if (obj.TryGetComponent(out IGameData iGameData))
+            {
+                gameData = iGameData;
+            }
+            if (obj.TryGetComponent(out IDataManipulator iDataManipulator))
+            {
+                dataManipulator = iDataManipulator;
+            }
 
             gameElements.AddRange(obj.GetComponents<IOnGame>());
         }
@@ -46,11 +54,10 @@ public class Initializer
         statesRunner.OnGameStart(statesRunner);
         statesRunner.OnGameStart(enemyDieDependencies);
         statesRunner.OnGameStart(transformProvider);
-        DataManipulator manipulator = new DataManipulator();
-        dataManipulator = manipulator;
-        gameData = manipulator;
+        DataGamePlay.Instance.StartDataGamePlay();
         statesRunner.OnGameStart(gameData);
         statesRunner.OnGameStart(dataManipulator);
-        manipulator.AfterInject();
+        DataGameStartSetUp dataAtStart = new DataGameStartSetUp(gameData);
+        dataAtStart.SetUp();
     }
 }
