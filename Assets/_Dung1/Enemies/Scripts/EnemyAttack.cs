@@ -4,16 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAttack : StateMachineBehaviour
+public class EnemyAttack : EnemyBehaviourBase
 {
 
-    Transform player;
-
     public float stopAttackDistance = 2.5f;
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

@@ -42,7 +42,6 @@ public class Initializer
     {
         statesRunner = new GameStatesContext(gameElements);
         statesRunner.OnGameStart(statesRunner);
-        statesRunner.OnGameStart(0);
         statesRunner.OnGameStart(enemyDieDependencies);
         statesRunner.OnGameStart(transformProvider);
         

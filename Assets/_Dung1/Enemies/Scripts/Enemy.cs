@@ -17,6 +17,18 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    List<IOnEnemyDie> onDie;
+    ITransformGettable playerTransform;
+    public void SetDependencies(ITransformGettable player, List<IOnEnemyDie> enemyDieCalls)
+    {
+        playerTransform = player;
+        onDie = enemyDieCalls;
+        foreach (var behaviour in animator.GetBehaviours<EnemyBehaviourBase>())
+        {
+            behaviour.SetPlayerTransform(playerTransform._transform);
+        }
+    }
+
     public void TakeDamage(int damageAmount)
     {
         if (isDead){
@@ -27,6 +39,10 @@ public class Enemy : MonoBehaviour
 
         if (HP <= 0)
         {
+            foreach (var act in onDie)
+            {
+                act.OnEnemyDie();
+            }
             animator.SetTrigger("isDead");
         } else {
             animator.SetTrigger("damaged");

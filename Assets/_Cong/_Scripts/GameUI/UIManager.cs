@@ -110,7 +110,7 @@ public class UIManager : Singleton<UIManager>
         {
             if (pause)
             {
-                Time.timeScale = 0;
+                GameManager.Instance.SetGameState(GameState.Pause);
             }
         });
         
@@ -119,7 +119,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (resume)
         {
-            Time.timeScale = 1;
+            GameManager.Instance.SetGameState(GameState.Running);
         }
         canvasGroup.DOFade(0, 0.3f)
             .OnComplete(()=>DisablePanel(panel));        

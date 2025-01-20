@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundGenerator : MonoBehaviour, IMapGenerattable, IOnGameStart<int>, IOnStageStart
+public class GroundGenerator : MonoBehaviour, IMapGeneratable, IOnStageStart
 {
     GameObject[] groundUnits;
     const string UNITS_PATH_IN_RESOURCES = "MapUnits";
@@ -19,7 +19,7 @@ public class GroundGenerator : MonoBehaviour, IMapGenerattable, IOnGameStart<int
 
     List<GameObject> outOfRegionUnits;
 
-    public Action<int> onGameStartAction => param =>
+    void Start()
     {
         groundUnits = Resources.LoadAll<GameObject>(UNITS_PATH_IN_RESOURCES);
         groundUnitPool = new List<GameObject>();
@@ -27,7 +27,7 @@ public class GroundGenerator : MonoBehaviour, IMapGenerattable, IOnGameStart<int
         generateCoordinates = new HashSet<Vector3>();
         outOfRegionUnits = new List<GameObject>();
         inPoolCount = shell * 2 + 1;
-    };
+    }
 
     public Action onStageStartAction => () => SpawnMap();
 

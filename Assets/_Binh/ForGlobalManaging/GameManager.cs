@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>, IOnGameOver, IOnGamePause, IOnGameStart<IOnGameStates>, IOnStageOver, IOnStageStart
+public class GameManager : Singleton<GameManager>, IOnGameOver, IOnGamePause, IOnGameStart<IOnGameStates>, IOnStageOver, IOnStageStart, IOnGameRunning
 {
     GameState gameState;
     IOnGameStates gameRunner;
@@ -26,6 +26,12 @@ public class GameManager : Singleton<GameManager>, IOnGameOver, IOnGamePause, IO
     public Action onStageStartAction => () => SetGameState(GameState.Running);
 
     public Action<IOnGameStates> onGameStartAction => param => gameRunner = param;
+
+    public Action onGameRunningAction => () =>
+    {
+        Time.timeScale = 1;
+        SetGameState(GameState.None);
+    };
 
     private void Start()
     {
@@ -65,10 +71,6 @@ public class GameManager : Singleton<GameManager>, IOnGameOver, IOnGamePause, IO
     public void SetGameState(GameState state)
     {
         gameState = state;
-        if (Time.timeScale == 0 && gameState == GameState.Running)
-        {
-            Time.timeScale = 1;
-        }
     }
 
     public void OnAttack(CharacterBase attacker, CharacterBase damageTaker)

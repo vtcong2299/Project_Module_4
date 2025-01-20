@@ -2,9 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOnGameStart<List<IOnEnemyDie>>
 {
     public static EnemyManager Instance {get; set;}
+
+    List<IOnEnemyDie> dieCalls;
+    ITransformGettable playerTransform;
+    System.Action<List<IOnEnemyDie>> IOnGameStart<List<IOnEnemyDie>>.onGameStartAction => enemyDieCalls => dieCalls = enemyDieCalls;
+    System.Action<ITransformGettable> IOnGameStart<ITransformGettable>.onGameStartAction => theTransform =>
+    {
+        playerTransform = theTransform;
+        player = playerTransform._transform.gameObject;
+    };
 
     public int currentRound;
     public int waveInRound;
@@ -27,7 +36,6 @@ public class EnemyManager : MonoBehaviour
             Destroy(gameObject);
         } else {
             Instance = this;
-            player = GameObject.FindGameObjectWithTag("Player");
         }
     }
 
@@ -47,7 +55,8 @@ public class EnemyManager : MonoBehaviour
         {
             Vector3 randomOffset = new Vector3(Random.Range(-spawnDistance / 4, spawnDistance / 4), 0, 0);
             GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-            Instantiate(enemyPrefab, spawnPositionAbove + randomOffset, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, spawnPositionAbove + randomOffset, Quaternion.identity);
+            enemy.GetComponent<Enemy>().SetDependencies(playerTransform, dieCalls);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }
@@ -60,7 +69,8 @@ public class EnemyManager : MonoBehaviour
         {
             Vector3 randomOffset = new Vector3(Random.Range(-spawnDistance / 4, spawnDistance / 4), 0, 0);
             GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-            Instantiate(enemyPrefab, spawnPositionBelow + randomOffset, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, spawnPositionBelow + randomOffset, Quaternion.identity);
+            enemy.GetComponent<Enemy>().SetDependencies(playerTransform, dieCalls);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }

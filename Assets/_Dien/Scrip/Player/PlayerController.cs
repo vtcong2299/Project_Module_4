@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ITransformGettable, IOnGamePause, IOnGameRunning
 {
 
     [SerializeField] Joystick joystick;
@@ -18,6 +19,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float walkSpeed;
     [SerializeField] float walkSpeedLevle = 6.0f; // Tốc độ theo cấp độ của người chơi. Thấp nhất là 6 người chơi đi bộ. Cao nhất là 10 người chơi sẽ chạy.
 
+    public Transform _transform => transform;
+
+    bool gamePause;
+    public Action onGamePauseAction => () => gamePause = true;
+    public Action onGameRunningAction => () => gamePause = false;
+
     void Start()
     {
         playerAnimation = GetComponent<Animator>();
@@ -26,9 +33,13 @@ public class PlayerController : MonoBehaviour
         walkSpeedHash = Animator.StringToHash(walkSpeedString);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
+        if (gamePause)
+        {
+            return;
+        }
         PlayerMove();
     }
 

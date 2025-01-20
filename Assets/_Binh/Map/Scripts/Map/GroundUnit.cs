@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class GroundUnit : MonoBehaviour
 {
-    IMapGenerattable mapGenerator;
+    IMapGeneratable mapGenerator;
 
     [SerializeField]
     float offset;
 
     public float _offset { get => offset; }
 
-    public void Active(IMapGenerattable generator)
+    public void Active(IMapGeneratable generator)
     {
         mapGenerator = generator;
     }

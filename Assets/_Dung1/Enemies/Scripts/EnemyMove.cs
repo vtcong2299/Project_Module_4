@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMove : StateMachineBehaviour
+public class EnemyMove : EnemyBehaviourBase
 {
-    Transform player;
     Rigidbody rb;
 
     public float moveSpeed = 5f;
@@ -15,8 +14,10 @@ public class EnemyMove : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        rb = animator.GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            rb = animator.GetComponent<Rigidbody>();
+        }
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

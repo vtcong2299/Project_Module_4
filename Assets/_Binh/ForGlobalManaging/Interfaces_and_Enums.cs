@@ -22,7 +22,7 @@ public interface ITransformGettable
     Transform _transform { get; }
 }
 
-public interface IMapGenerattable
+public interface IMapGeneratable
 {
     void GenerateUnits(Func<Vector3> PivotSetter = null);
 }
