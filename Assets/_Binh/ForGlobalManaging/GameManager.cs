@@ -9,10 +9,6 @@ public class GameManager : Singleton<GameManager>, IOnGameOver, IOnGamePause, IO
     [SerializeField]
     Initializer initializer;
 
-    [Header("--------------------Cong--------------------")]    
-    public DataGamePlay dataGamePlay;
-    public GaneData gameData;
-
     public Action onGameOverAction => () => SetGameState(GameState.None);
 
     public Action onGamePauseAction => () =>
@@ -35,17 +31,12 @@ public class GameManager : Singleton<GameManager>, IOnGameOver, IOnGamePause, IO
 
     private void Start()
     {
-        dataGamePlay.StartDataGamePlay();
-        LoadDataGame();
-        DataPlayer.Instance.StartPlayerData();
-        SetPanelOptions();
         initializer.InjectAllAtGameStart();
         SetGameState(GameState.StageStart);
     }
 
     private void Update()
     {
-        //DataPlayer.Instance.LevelUp(1);
         switch (gameState)
         {
             case GameState.None:
@@ -80,35 +71,5 @@ public class GameManager : Singleton<GameManager>, IOnGameOver, IOnGamePause, IO
             damageTaker.BeAttacked(attacker._damage);
         }
     }
-    public void LoadDataGame() //Cong
-    {
-        gameData = dataGamePlay.LoadData();
-    }
-    public void SaveDataGame() //Cong
-    {
-        if (dataGamePlay != null)
-        {
-            dataGamePlay.SaveData(gameData);
-        }
-    }
-    void SetPanelOptions() //Cong
-    {
-        if (gameData.hasBGM)
-        {
-            UIManager.Instance.panelOption.OnBGM();
-        }
-        else
-        {
-            UIManager.Instance.panelOption.OffBGM();
-        }
-        if (gameData.hasSFX)
-        {
-            UIManager.Instance.panelOption.OnSFX();
-        }
-        else
-        {
-            UIManager.Instance.panelOption.OffSFX();
-        }
 
-    }
 }

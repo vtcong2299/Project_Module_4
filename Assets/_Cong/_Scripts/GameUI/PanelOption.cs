@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelOption : MonoBehaviour
+public class PanelOption : MonoBehaviour, IOnGameStart<IGameData>, IOnGameStart<IDataManipulator>
 {
     
     [SerializeField] Button backButton;
@@ -11,6 +10,13 @@ public class PanelOption : MonoBehaviour
     [SerializeField] Button vfxButton;
     [SerializeField] GameObject black1;
     [SerializeField] GameObject black2;
+
+    IGameData gameData;
+    IDataManipulator dataManipulator;
+
+    Action<IGameData> IOnGameStart<IGameData>.onGameStartAction => data => gameData = data;
+
+    Action<IDataManipulator> IOnGameStart<IDataManipulator>.onGameStartAction => manipulator => dataManipulator = manipulator;
 
     private void Awake()
     {
@@ -23,12 +29,12 @@ public class PanelOption : MonoBehaviour
         AudioManager.Instance.SoundClickButton();
         UIManager.Instance.OnEnablePanelPauseGame();
         UIManager.Instance.OnDisablePanelOptions();
-        GameManager.Instance.SaveDataGame();
+        dataManipulator.SaveDataGame();
     }
     void ClickMusicButton()
     {
         AudioManager.Instance.SoundClickButton();
-        if (!GameManager.Instance.gameData.hasBGM)
+        if (!gameData.data.hasBGM)
         {
             OnBGM();
         }
@@ -40,7 +46,7 @@ public class PanelOption : MonoBehaviour
     void ClickSFXButton()
     {
         AudioManager.Instance.SoundClickButton();
-        if (!GameManager.Instance.gameData.hasSFX)
+        if (!gameData.data.hasSFX)
         {
             OnSFX();
         }
@@ -51,25 +57,25 @@ public class PanelOption : MonoBehaviour
     }
     public void OnBGM()
     {
-        GameManager.Instance.gameData.hasBGM = true;
+        gameData.data.hasBGM = true;
         AudioManager.Instance.SetVolumAudioBGM(true);
         black1.SetActive(false);
     }
     public void OffBGM()
     {
-        GameManager.Instance.gameData.hasBGM = false;
+        gameData.data.hasBGM = false;
         AudioManager.Instance.SetVolumAudioBGM(false);
         black1.SetActive(true);
     }
     public void OnSFX()
     {
-        GameManager.Instance.gameData.hasSFX = true;
+        gameData.data.hasSFX = true;
         AudioManager.Instance.SetVolumAudioSFX(true);
         black2.SetActive(false);
     }
     public void OffSFX()
     {
-        GameManager.Instance.gameData.hasSFX = false;
+        gameData.data.hasSFX = false;
         AudioManager.Instance.SetVolumAudioSFX(false);
         black2.SetActive(true);
     }

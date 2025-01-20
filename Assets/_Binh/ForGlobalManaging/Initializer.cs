@@ -12,6 +12,8 @@ public class Initializer
     ITransformGettable transformProvider;
 
     IOnGameStates statesRunner;
+    IGameData gameData;
+    IDataManipulator dataManipulator;
 
     public void InjectAllAtGameStart()
     {
@@ -44,6 +46,11 @@ public class Initializer
         statesRunner.OnGameStart(statesRunner);
         statesRunner.OnGameStart(enemyDieDependencies);
         statesRunner.OnGameStart(transformProvider);
-        
+        DataManipulator manipulator = new DataManipulator();
+        dataManipulator = manipulator;
+        gameData = manipulator;
+        statesRunner.OnGameStart(gameData);
+        statesRunner.OnGameStart(dataManipulator);
+        manipulator.AfterInject();
     }
 }

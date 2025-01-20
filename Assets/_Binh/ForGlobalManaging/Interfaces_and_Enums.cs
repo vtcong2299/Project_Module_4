@@ -27,6 +27,16 @@ public interface IMapGeneratable
     void GenerateUnits(Func<Vector3> PivotSetter = null);
 }
 
+public interface IGameData
+{
+    GaneData data { get; }
+}
+
+public interface IDataManipulator
+{
+    void SaveDataGame();
+}
+
 public interface IOnGameStates
 {
     void OnGameStart<T>(T parameter);

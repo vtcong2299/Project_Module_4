@@ -192,17 +192,7 @@ MonoBehaviour:
     - {fileID: 1154175021}
     - {fileID: 190836153}
     - {fileID: 27712167}
-  dataGamePlay: {fileID: 773828303}
-  gameData:
-    highestWave: 0
-    hasBGM: 0
-    hasSFX: 0
-    damageDefault: 100
-    hpDefault: 1000
-    attackSpeedDefault: 5
-    moveSpeedDefault: 10
-    armorDefault: 20
-    lifeStealPercentDefault: 0
+    - {fileID: 1062839596}
 --- !u!4 &21976042
 Transform:
   m_ObjectHideFlags: 0

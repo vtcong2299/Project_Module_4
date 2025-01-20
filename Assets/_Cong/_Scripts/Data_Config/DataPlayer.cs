@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataPlayer : Singleton<DataPlayer>
+public class DataPlayer : Singleton<DataPlayer>, IOnEnemyDie, IOnGameStart<IGameData>
 {
     public int curentLevel;
     [SerializeField] int levelMax = 15;
@@ -29,14 +30,19 @@ public class DataPlayer : Singleton<DataPlayer>
     [SerializeField] float moveSpeedPercentIncreased = 0;
     [SerializeField] float armorPercentIncreased = 0;
 
+    IGameData gameData;
+
+    public Action<IGameData> onGameStartAction => data => gameData = data;
+
+
     public void StartPlayerData()
     {
-         damageDefault = GameManager.Instance.gameData.damageDefault;
-         hpDefault = GameManager.Instance.gameData.hpDefault;
-         attackSpeedDefault = GameManager.Instance.gameData.attackSpeedDefault;
-         moveSpeedDefault = GameManager.Instance.gameData.moveSpeedDefault;
-         armorDefault = GameManager.Instance.gameData.armorDefault;
-         lifeStealPercentDefault = GameManager.Instance.gameData.lifeStealPercentDefault;
+         damageDefault = gameData.data.damageDefault;
+         hpDefault = gameData.data.hpDefault;
+         attackSpeedDefault = gameData.data.attackSpeedDefault;
+         moveSpeedDefault = gameData.data.moveSpeedDefault;
+         armorDefault = gameData.data.armorDefault;
+         lifeStealPercentDefault = gameData.data.lifeStealPercentDefault;
          ResetDataPlayer();
         curentLevel = 1;
     }
@@ -91,5 +97,10 @@ public class DataPlayer : Singleton<DataPlayer>
         }
         if (UIManager.Instance.hasPanelBuff) return;
         this.exp += exp;
+    }
+
+    public void OnEnemyDie()
+    {
+        LevelUp(1);
     }
 }

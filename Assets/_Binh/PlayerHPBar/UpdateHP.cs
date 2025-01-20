@@ -7,7 +7,7 @@ public class UpdateHP : MonoBehaviour
     void Start()
     {
         HPBar = GetComponent<Slider>();
-        HPBar.maxValue = 100;//DataPlayer.Instance.;
+        HPBar.maxValue = 1000;//DataPlayer.Instance.;
         HPBar.value = HPBar.maxValue;
     }
 
