@@ -18,12 +18,12 @@ public class DataPlayer : Singleton<DataPlayer>, IOnEnemyDie, IOnGameStart<IGame
     float armorDefault;
     float lifeStealPercentDefault;
 
-    [SerializeField] float damageMax;
-    [SerializeField] float hpMax;
-    [SerializeField] float attackSpeedMax;
-    [SerializeField] float moveSpeedMax;
-    [SerializeField] float armorMax;
-    [SerializeField] float lifeStealPercentMax;
+    public float damageMax;
+    public float hpMax;
+    public float attackSpeedMax;
+    public float moveSpeedMax;
+    public float armorMax;
+    public float lifeStealPercentMax;
     [SerializeField] float damagePercentIncreased = 0;
     [SerializeField] float hpPercentIncreased = 0;
     [SerializeField] float attackSpeedPercentIncreased = 0;
@@ -44,7 +44,8 @@ public class DataPlayer : Singleton<DataPlayer>, IOnEnemyDie, IOnGameStart<IGame
          armorDefault = gameData.data.armorDefault;
          lifeStealPercentDefault = gameData.data.lifeStealPercentDefault;
          ResetDataPlayer();
-        curentLevel = 1;
+         curentLevel = 1;
+         PlayerCtrl.Instance.playerReceiveDame.StartPlayerDameReceive();
     }
     public void AddPowerUp(ConfigPowerUp buff)
     {

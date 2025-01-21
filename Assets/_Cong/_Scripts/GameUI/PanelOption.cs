@@ -27,8 +27,8 @@ public class PanelOption : MonoBehaviour, IOnGameStart<IGameData>, IOnGameStart<
     void ClickBackButton()
     {
         AudioManager.Instance.SoundClickButton();
-        UIManager.Instance.OnEnablePanelPauseGame();
         UIManager.Instance.OnDisablePanelOptions();
+        UIManager.Instance.OnEnablePanelPauseGame();
         dataManipulator.SaveData();
     }
     void ClickMusicButton()

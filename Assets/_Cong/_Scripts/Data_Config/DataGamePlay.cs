@@ -6,7 +6,7 @@ using UnityEngine.TextCore.Text;
 using System.ComponentModel;
 
 [Serializable]
-public class GaneData
+public class GameData
 {
     public double highestWave;
     public bool hasBGM;
@@ -14,7 +14,7 @@ public class GaneData
     public float damageDefault = 100;
     public float hpDefault = 1000;
     public float attackSpeedDefault = 5;
-    public float moveSpeedDefault = 10;
+    public float moveSpeedDefault = 3.5f;
     public float armorDefault = 20;
     public float lifeStealPercentDefault = 0;
 
@@ -24,9 +24,9 @@ public class DataGamePlay : Singleton<DataGamePlay>, IGameData, IDataManipulator
 {
     private string dataPath;
 
-    GaneData gameData;
+    GameData gameData;
 
-    public GaneData data => gameData;
+    public GameData data => gameData;
 
     public void StartDataGamePlay()
     {
@@ -40,14 +40,14 @@ public class DataGamePlay : Singleton<DataGamePlay>, IGameData, IDataManipulator
             File.WriteAllText(dataPath, json); //tạo file nếu chưa tồn tại
     }
 
-    GaneData LoadData()
+    GameData LoadData()
     {
         if (File.Exists(dataPath))
         {
                 string json = File.ReadAllText(dataPath);
-                GaneData data = JsonUtility.FromJson<GaneData>(json);
+                GameData data = JsonUtility.FromJson<GameData>(json);
                 return data;
         }
-        return new GaneData(); // Trả về dữ liệu mới nếu không tìm thấy file
+        return new GameData(); // Trả về dữ liệu mới nếu không tìm thấy file
     }    
 }

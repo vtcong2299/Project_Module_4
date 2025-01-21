@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Project_Module_4.sln"
+    "dotnet.defaultSolution": "Project_Module_4.sln",
+    "dotnet.preferCSharpExtension": true
 }

@@ -30,8 +30,8 @@ public class PanelPauseGame : MonoBehaviour
     void ClickOptionsButton()
     {
         AudioManager.Instance.SoundClickButton();
-        UIManager.Instance.OnEnablePanelOptions();
         UIManager.Instance.OnDisablePanelPauseGame();
+        UIManager.Instance.OnEnablePanelOptions();
     }
     void ClickRestartButton()
     {

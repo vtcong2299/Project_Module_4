@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
 {
-    [SerializeField] Transform weaponTranform; // Vị trí vũ khí, tâm bám kính tìm kiếm enemy
-    [SerializeField] float detectionRadius = 10f; // Bán kính tìm kiếm
+    [SerializeField] Transform player; // Vị trí player, tâm bám kính tìm kiếm enemy
+    [SerializeField] float detectionRadius = 25f; // Bán kính tìm kiếm
     [SerializeField] float delayTime = 2f; // Khoản cách giữa các lầm tìm kiếm enemy mới
     [SerializeField] GameObject closetEnemy;
     [SerializeField] GameObject virtualEnemy;
@@ -19,24 +19,24 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
 
     private void Start()
     {
-        StartCoroutine(FindClosetEnemyFixtest());
+        StartCoroutine(FindClosestEnemyCoroutine());
     }
     void Update()
     {
         TargetRing();
         CheckDistanceAndRespawn();
     }
-    IEnumerator FindClosetEnemyFixtest()
+    IEnumerator FindClosestEnemyCoroutine()
     {
         while (true)
         {
-            closetEnemy = FindClosetEnemy();
+            closetEnemy = FindClosestEnemy();
             yield return new WaitForSeconds(delayTime);
         }
     }
-    GameObject FindClosetEnemy()
+    GameObject FindClosestEnemy()
     {
-        Collider[] colliders = Physics.OverlapSphere(weaponTranform.position, detectionRadius);
+        Collider[] colliders = Physics.OverlapSphere(player.position, detectionRadius);
         GameObject closet = null;
         float shortesDistance = Mathf.Infinity;
 
@@ -51,7 +51,7 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
             {
                 if (collider.CompareTag("Enemy"))
                 {
-                    float distance = Vector3.Distance(weaponTranform.position, collider.transform.position);
+                    float distance = Vector3.Distance(player.position, collider.transform.position);
                     if (distance < shortesDistance)
                     {
                         shortesDistance = distance;
