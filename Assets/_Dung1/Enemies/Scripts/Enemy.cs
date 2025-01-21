@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         {
             foreach (var act in onDie)
             {
-                act.OnEnemyDie();
+                act.OnEnemyDie(exp);
             }
             animator.SetTrigger("isDead");
         } else {

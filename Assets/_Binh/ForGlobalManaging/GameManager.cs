@@ -17,9 +17,9 @@ public class GameManager : Singleton<GameManager>, IOnGameOver, IOnGamePause, IO
         SetGameState(GameState.None);
     };
 
-    public Action onStageOverAction => () => SetGameState(GameState.Running);
+    public Action onStageOverAction => () => SetGameState(GameState.None);
 
-    public Action onStageStartAction => () => SetGameState(GameState.Running);
+    public Action onStageStartAction => () => SetGameState(GameState.None);
 
     public Action<IOnGameStates> onGameStartAction => param => gameRunner = param;
 

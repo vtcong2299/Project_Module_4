@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 #region Interfaces
@@ -14,7 +15,13 @@ public interface IBeAttackedable
 
 public interface IOnEnemyDie
 {
-    void OnEnemyDie();
+    void OnEnemyDie(int exp);
+}
+
+public interface IRespawnable
+{
+    float respawnDistance { get; }
+    void Respawn();
 }
 
 public interface ITransformGettable

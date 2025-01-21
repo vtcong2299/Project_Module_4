@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
 {
     [SerializeField] Transform weaponTranform; // Vị trí vũ khí, tâm bám kính tìm kiếm enemy
     [SerializeField] float detectionRadius = 10f; // Bán kính tìm kiếm
@@ -11,7 +12,10 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] GameObject targerRing;
 
+    IRespawnable respawner;
     Transform checkPoint;
+
+    public Action<IRespawnable> onGameStartAction => spawner => respawner = spawner;
 
     private void Start()
     {
@@ -19,7 +23,8 @@ public class PlayerAttack : MonoBehaviour
     }
     void Update()
     {
-         TargetRing();
+        TargetRing();
+        CheckDistanceAndRespawn();
     }
     IEnumerator FindClosetEnemyFixtest()
     {
@@ -68,6 +73,20 @@ public class PlayerAttack : MonoBehaviour
         else
         {
             targerRing.transform.position = closetEnemy.transform.position;
+        }
+    }
+
+    void CheckDistanceAndRespawn()
+    {
+        if (checkPoint == null)
+        {
+            return;
+        }
+
+        if (Vector3.Distance(transform.position, checkPoint.position) >= respawner.respawnDistance)
+        {
+            checkPoint = virtualEnemy.transform;
+            respawner.Respawn();
         }
     }
 }

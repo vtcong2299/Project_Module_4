@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOnGameStart<List<IOnEnemyDie>>, IOnEnemyDie
+public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOnGameStart<List<IOnEnemyDie>>, IOnEnemyDie, IRespawnable
 {
     List<IOnEnemyDie> dieCalls;
     ITransformGettable player;
@@ -11,6 +11,11 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
     {
         player = theTransform;
     };
+
+    public float respawnDistance => 12f;
+
+    List<GameObject> enemies;
+    GameObject enemyParent;
 
     public int currentRound;
     public int waveInRound;
@@ -28,6 +33,8 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
 
     void Start()
     {
+        enemyParent = new GameObject("Enemies");
+        enemies = new List<GameObject>();
         StartCoroutine(NextWave());
     }
 
@@ -41,8 +48,9 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
         {
             Vector3 randomOffset = new Vector3(Random.Range(-spawnDistance / 4, spawnDistance / 4), 0, 0);
             GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-            GameObject enemy = Instantiate(enemyPrefab, spawnPositionAbove + randomOffset, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, spawnPositionAbove + randomOffset, Quaternion.identity, enemyParent.transform);
             enemy.GetComponent<Enemy>().SetDependencies(player, dieCalls);
+            enemies.Add(enemy);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }
@@ -55,13 +63,24 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
         {
             Vector3 randomOffset = new Vector3(Random.Range(-spawnDistance / 4, spawnDistance / 4), 0, 0);
             GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-            GameObject enemy = Instantiate(enemyPrefab, spawnPositionBelow + randomOffset, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, spawnPositionBelow + randomOffset, Quaternion.identity, enemyParent.transform);
             enemy.GetComponent<Enemy>().SetDependencies(player, dieCalls);
+            enemies.Add(enemy);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }
 
     //Hàm respawn enemy khi enemy quá xa player
+    public void Respawn()
+    {
+        StopAllCoroutines();
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        enemies.Clear();
+        StartCoroutine(NextWave());
+    }
 
     //Hàm kiểm tra xem toàn bộ enemy trong wave đã chết hết chưa, nếu hết rồi thì chuyển wave hoặc chuyển round nếu đã là wave cuối
 
@@ -75,7 +94,7 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
         StartCoroutine(SpawnEnemiesBelow());
     }
 
-    public void OnEnemyDie()
+    public void OnEnemyDie(int exp)
     {
         enemyAlive--;
         if (enemyAlive == 0)
@@ -85,4 +104,5 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
     }
 
     //Hàm chuyển round
+
 }

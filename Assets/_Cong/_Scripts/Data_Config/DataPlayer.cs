@@ -99,8 +99,8 @@ public class DataPlayer : Singleton<DataPlayer>, IOnEnemyDie, IOnGameStart<IGame
         this.exp += exp;
     }
 
-    public void OnEnemyDie()
+    public void OnEnemyDie(int exp)
     {
-        LevelUp(1);
+        LevelUp(exp);
     }
 }

@@ -264,10 +264,10 @@ MonoBehaviour:
   - {fileID: 7523753541182956286, guid: f073f37b7bbaec64689d918ebba8a768, type: 3}
   - {fileID: 372549521865676700, guid: 12cc1f6d09b1a5d4a8cb5cf7aeab9c7b, type: 3}
   - {fileID: 7010778727569076836, guid: bff036dbba3c3e54690016f4351c8e75, type: 3}
-  player: {fileID: 190836153}
   spawnPositionAbove: {x: 0, y: 0, z: 0}
   spawnPositionBelow: {x: 0, y: 0, z: 0}
   spawnDistance: 20
+  respawnDistance: 40
   timeBetweenSpawns: 0.5
   timeBetweenWaves: 5
 --- !u!1 &77419854
