@@ -45,7 +45,7 @@ public class DataPlayer : Singleton<DataPlayer>, IOnEnemyDie, IOnGameStart<IGame
          lifeStealPercentDefault = gameData.data.lifeStealPercentDefault;
          ResetDataPlayer();
          curentLevel = 1;
-        PlayerCtrl.Instance.playerReceiveDame.StartPlayerDameReceive();
+         PlayerCtrl.Instance.playerReceiveDame.StartPlayerDameReceive();
     }
     public void AddPowerUp(ConfigPowerUp buff)
     {
