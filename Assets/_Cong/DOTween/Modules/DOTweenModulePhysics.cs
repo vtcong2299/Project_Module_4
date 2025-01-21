@@ -171,7 +171,7 @@ namespace DG.Tweening
         )
         {
             if (resolution < 1) resolution = 1;
-            Transform trans = target.transform;
+            UnityEngine.Transform trans = target.transform;
             TweenerCore<Vector3, Path, PathOptions> t = DOTween.To(PathPlugin.Get(), () => trans.localPosition, x => target.MovePosition(trans.parent == null ? x : trans.parent.TransformPoint(x)), new Path(pathType, path, resolution, gizmoColor), duration)
                 .SetTarget(target).SetUpdate(UpdateType.Fixed);
 
@@ -196,7 +196,7 @@ namespace DG.Tweening
             this Rigidbody target, Path path, float duration, PathMode pathMode = PathMode.Full3D
         )
         {
-            Transform trans = target.transform;
+            UnityEngine.Transform trans = target.transform;
             TweenerCore<Vector3, Path, PathOptions> t = DOTween.To(PathPlugin.Get(), () => trans.localPosition, x => target.MovePosition(trans.parent == null ? x : trans.parent.TransformPoint(x)), path, duration)
                 .SetTarget(target);
 

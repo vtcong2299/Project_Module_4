@@ -85,7 +85,7 @@ namespace DG.Tweening
         public static class Physics
         {
             // Called via DOTweenExternalCommand callback
-            public static void SetOrientationOnPath(PathOptions options, Tween t, Quaternion newRot, Transform trans)
+            public static void SetOrientationOnPath(PathOptions options, Tween t, Quaternion newRot, UnityEngine.Transform trans)
             {
 #if true // PHYSICS_MARKER
                 if (options.isRigidbody) ((Rigidbody)t.target).rotation = newRot;

@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOnGameStart<List<IOnEnemyDie>>
+public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOnGameStart<List<IOnEnemyDie>>, IOnEnemyDie
 {
-    public static EnemyManager Instance {get; set;}
-
     List<IOnEnemyDie> dieCalls;
-    ITransformGettable playerTransform;
+    ITransformGettable player;
     System.Action<List<IOnEnemyDie>> IOnGameStart<List<IOnEnemyDie>>.onGameStartAction => enemyDieCalls => dieCalls = enemyDieCalls;
     System.Action<ITransformGettable> IOnGameStart<ITransformGettable>.onGameStartAction => theTransform =>
     {
-        playerTransform = theTransform;
-        player = playerTransform._transform.gameObject;
+        player = theTransform;
     };
 
     public int currentRound;
@@ -23,54 +20,43 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
     public int enemyAlive;
 
     public GameObject[] enemyPrefabs;
-    public GameObject player;
     public Vector3 spawnPositionAbove;
     public Vector3 spawnPositionBelow;
     public float spawnDistance = 20f;
     public float timeBetweenSpawns = 0.5f;
     public float timeBetweenWaves = 5f;
 
-    private void Awake() {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        } else {
-            Instance = this;
-        }
+    void Start()
+    {
+        StartCoroutine(NextWave());
     }
 
-    private void Update() {
-        if (enemyAlive == 0)
-        {
-            StartCoroutine(NextWave());
-        }
-    }
 
     //Hàm spawn enemy ở một khoảng cánh so với player
     private IEnumerator SpawnEnemiesAbove()
     {
-        spawnPositionAbove = player.transform.position + new Vector3(0, 0, spawnDistance);
+        spawnPositionAbove = player._transform.position + new Vector3(0, 0, spawnDistance);
         
         for (int i = 0; i < enemyInWave; i++)
         {
             Vector3 randomOffset = new Vector3(Random.Range(-spawnDistance / 4, spawnDistance / 4), 0, 0);
             GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
             GameObject enemy = Instantiate(enemyPrefab, spawnPositionAbove + randomOffset, Quaternion.identity);
-            enemy.GetComponent<Enemy>().SetDependencies(playerTransform, dieCalls);
+            enemy.GetComponent<Enemy>().SetDependencies(player, dieCalls);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }
 
     private IEnumerator SpawnEnemiesBelow()
     {
-        spawnPositionBelow = player.transform.position - new Vector3(0, 0, spawnDistance);
+        spawnPositionBelow = player._transform.position - new Vector3(0, 0, spawnDistance);
 
         for (int i = 0; i < enemyInWave; i++)
         {
             Vector3 randomOffset = new Vector3(Random.Range(-spawnDistance / 4, spawnDistance / 4), 0, 0);
             GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
             GameObject enemy = Instantiate(enemyPrefab, spawnPositionBelow + randomOffset, Quaternion.identity);
-            enemy.GetComponent<Enemy>().SetDependencies(playerTransform, dieCalls);
+            enemy.GetComponent<Enemy>().SetDependencies(player, dieCalls);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }
@@ -87,6 +73,15 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
         currentWave++;
         StartCoroutine(SpawnEnemiesAbove());
         StartCoroutine(SpawnEnemiesBelow());
+    }
+
+    public void OnEnemyDie()
+    {
+        enemyAlive--;
+        if (enemyAlive == 0)
+        {
+            StartCoroutine(NextWave());
+        }
     }
 
     //Hàm chuyển round

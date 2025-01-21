@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, ITransformGettable, IOnGamePause, IOnGameRunning
+public class PlayerController : MonoBehaviour, IOnGamePause, IOnGameRunning, ITransformGettable
 {
 
     [SerializeField] Joystick joystick;

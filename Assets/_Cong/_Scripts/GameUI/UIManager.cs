@@ -19,7 +19,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] CanvasGroup canvasGroupPowerUp;
     [SerializeField] CanvasGroup canvasGroupGameOver;
     [SerializeField] CanvasGroup canvasGroupOptions;
-    [SerializeField] Transform selectedBuff;
+    [SerializeField] UnityEngine.Transform selectedBuff;
     [SerializeField] List<Sprite> buffList = new List<Sprite>();
     [SerializeField] GameObject imageBuff;
     public bool hasPanelBuff;
@@ -87,7 +87,7 @@ public class UIManager : Singleton<UIManager>
     }
     public void AddBuffToPausePanel()
     {
-        foreach (Transform buff in selectedBuff)
+        foreach (UnityEngine.Transform buff in selectedBuff)
         {
             Destroy(buff.gameObject);
         }

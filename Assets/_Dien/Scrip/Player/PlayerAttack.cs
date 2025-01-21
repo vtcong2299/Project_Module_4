@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -12,6 +10,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] GameObject virtualEnemy;
 
     [SerializeField] GameObject targerRing;
+
+    Transform checkPoint;
 
     private void Start()
     {
@@ -51,6 +51,7 @@ public class PlayerAttack : MonoBehaviour
                     {
                         shortesDistance = distance;
                         closet = collider.gameObject;
+                        checkPoint = closet.transform;
                     }
                 }
             }

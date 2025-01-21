@@ -25,7 +25,7 @@ public class EnemyAttack : EnemyBehaviourBase
         }
     }
 
-    private void LookAtPlayer(Transform _transform)
+    private void LookAtPlayer(UnityEngine.Transform _transform)
     {
         Vector3 direction = player.position - _transform.position;
         _transform.rotation = Quaternion.LookRotation(direction);

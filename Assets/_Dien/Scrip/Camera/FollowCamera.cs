@@ -2,7 +2,7 @@
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform player; // Đối tượng người chơi
+    public UnityEngine.Transform player; // Đối tượng người chơi
     public Vector3 offset;   // Offset giữa camera và người chơi
     public float smoothSpeed = 0.125f; // Tốc độ mượt mà khi di chuyển camera
 

@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f;   // Lực trọng trường
 
     [Header("Ground Detection")]
-    public Transform groundCheck;    // Điểm kiểm tra va chạm đất
+    public UnityEngine.Transform groundCheck;    // Điểm kiểm tra va chạm đất
     public float groundDistance = 0.4f; // Bán kính kiểm tra va chạm
     public LayerMask groundMask;     // Lớp đất để kiểm tra
 

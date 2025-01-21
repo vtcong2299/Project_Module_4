@@ -18,14 +18,12 @@ public class Enemy : MonoBehaviour
     }
 
     List<IOnEnemyDie> onDie;
-    ITransformGettable playerTransform;
     public void SetDependencies(ITransformGettable player, List<IOnEnemyDie> enemyDieCalls)
     {
-        playerTransform = player;
         onDie = enemyDieCalls;
         foreach (var behaviour in animator.GetBehaviours<EnemyBehaviourBase>())
         {
-            behaviour.SetPlayerTransform(playerTransform._transform);
+            behaviour.SetPlayerTransform(player._transform);
         }
     }
 
