@@ -29,7 +29,7 @@ public interface IMapGeneratable
 
 public interface IGameData
 {
-    GaneData data { get; }
+    GameData data { get; }
 }
 
 public interface IDataManipulator

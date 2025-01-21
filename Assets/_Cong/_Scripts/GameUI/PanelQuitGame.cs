@@ -21,6 +21,6 @@ public class PanelQuitGame : MonoBehaviour
     void ClickYesButton()
     {
         AudioManager.Instance.SoundClickButton();
-
+        GameManager.Instance.OutGame();
     }
 }

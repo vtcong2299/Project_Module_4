@@ -1,6 +1,6 @@
 public class DataGameStartSetUp
 {
-    GaneData _gameData;
+    GameData _gameData;
     public DataGameStartSetUp(IGameData gameData)
     {
         _gameData = gameData.data;

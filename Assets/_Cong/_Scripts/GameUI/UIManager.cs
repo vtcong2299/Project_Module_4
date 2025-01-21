@@ -74,11 +74,11 @@ public class UIManager : Singleton<UIManager>
     }
     public void OnEnablePanelOptions()
     {
-        Show(panelOptions, canvasGroupOptions, false);
+        Show(panelOptions, canvasGroupOptions, true);
     }
     public void OnDisablePanelOptions()
     {
-        Hide(panelOptions, canvasGroupOptions, false);
+        Hide(panelOptions, canvasGroupOptions, true);
     }
     public void AddToBuffList(ConfigPowerUp buff)
     {      
@@ -106,23 +106,21 @@ public class UIManager : Singleton<UIManager>
     {
         canvasGroup.alpha= 0;
         panel.SetActive(true);
-        canvasGroup.DOFade(1, 0.5f).OnComplete(() =>
-        {
-            if (pause)
+        canvasGroup.DOFade(1, 0.5f).SetUpdate(UpdateType.Normal, true);
+        if (pause)
             {
                 GameManager.Instance.SetGameState(GameState.Pause);
-            }
-        });
-        
+            }        
     }
     public void Hide(GameObject panel, CanvasGroup canvasGroup, bool resume)
     {
+        canvasGroup.DOFade(0, 0.3f)
+            .SetUpdate(UpdateType.Normal, true)
+            .OnComplete(() => DisablePanel(panel));
         if (resume)
         {
             GameManager.Instance.SetGameState(GameState.Running);
         }
-        canvasGroup.DOFade(0, 0.3f)
-            .OnComplete(()=>DisablePanel(panel));        
     }
     void DisablePanel(GameObject panel)
     {

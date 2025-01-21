@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour, IOnGamePause, IOnGameRunning, ITr
     [SerializeField] string walkSpeedString = "WalkSpeed";
     [SerializeField] int walkSpeedHash;
     [SerializeField] float walkSpeed;
-    [SerializeField] float walkSpeedLevle = 6.0f; // Tốc độ theo cấp độ của người chơi. Thấp nhất là 6 người chơi đi bộ. Cao nhất là 10 người chơi sẽ chạy.
+    [SerializeField] float walkSpeedLevel = 10f; // Tốc độ theo cấp độ của người chơi. Thấp nhất là 6 người chơi đi bộ. Cao nhất là 10 người chơi sẽ chạy.
 
     public Transform _transform => transform;
 
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour, IOnGamePause, IOnGameRunning, ITr
             float agle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, 0.1f);
             transform.rotation = Quaternion.Euler(0f, agle, 0f);
             playerAnimation.SetBool(walkHash, true);
-            walkSpeed = new Vector2(horizontal, vertical).magnitude * (walkSpeedLevle/10);
+            walkSpeed = new Vector2(horizontal, vertical).magnitude * (walkSpeedLevel/10);
             playerAnimation.SetFloat(walkSpeedHash, walkSpeed);
         }
         else
