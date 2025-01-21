@@ -7,6 +7,7 @@ public class PlayerAnim : MonoBehaviour
     [SerializeField] Animator animator;
     string isRunHash = "isRun";
     string isDeadHash = "isDead";
+    string isSpawnHash = "isSpawning";
 
 
     public void SetRun(bool isRunning)
@@ -17,5 +18,10 @@ public class PlayerAnim : MonoBehaviour
     public void SetDead()
     {
         animator.SetTrigger(isDeadHash);
+    }
+
+    public bool IsSpawning()
+    {
+        return animator.GetBool(isSpawnHash);
     }
 }
