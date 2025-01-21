@@ -277,7 +277,6 @@ MonoBehaviour:
   spawnPositionAbove: {x: 0, y: 0, z: 0}
   spawnPositionBelow: {x: 0, y: 0, z: 0}
   spawnDistance: 20
-  respawnDistance: 40
   timeBetweenSpawns: 0.5
   timeBetweenWaves: 5
 --- !u!1 &77419854
@@ -806,7 +805,7 @@ GameObject:
   - component: {fileID: 167947215}
   - component: {fileID: 167947214}
   - component: {fileID: 167947213}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: PlayerHPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2100,7 +2099,7 @@ GameObject:
   - component: {fileID: 404204638}
   - component: {fileID: 404204640}
   - component: {fileID: 404204639}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3436,7 +3435,7 @@ GameObject:
   - component: {fileID: 783446747}
   - component: {fileID: 783446749}
   - component: {fileID: 783446748}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4077,6 +4076,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Staff
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ffae9263bd1a66245bd2bad16f271364, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: ffae9263bd1a66245bd2bad16f271364, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: ffae9263bd1a66245bd2bad16f271364, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: ffae9263bd1a66245bd2bad16f271364, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100030, guid: ffae9263bd1a66245bd2bad16f271364, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100032, guid: ffae9263bd1a66245bd2bad16f271364, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100038, guid: ffae9263bd1a66245bd2bad16f271364, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100042, guid: ffae9263bd1a66245bd2bad16f271364, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ffae9263bd1a66245bd2bad16f271364, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.99996036
@@ -4295,7 +4326,7 @@ GameObject:
   - component: {fileID: 924531537}
   - component: {fileID: 924531539}
   - component: {fileID: 924531538}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6009,9 +6040,9 @@ GameObject:
   - component: {fileID: 1075868735}
   - component: {fileID: 1075868736}
   - component: {fileID: 1075868737}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7926,7 +7957,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1444718210}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

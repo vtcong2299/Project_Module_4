@@ -12,7 +12,7 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
         player = theTransform;
     };
 
-    public float respawnDistance => 12f;
+    public float respawnDistance => 45f;
 
     List<GameObject> enemies;
     GameObject enemyParent;

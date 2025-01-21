@@ -10,7 +10,7 @@ public class EnemyMove : EnemyBehaviourBase
     public float moveSpeed = 5f;
     public float attackDistance = 3f;
 
-    public float maxDistance = 21f; // Khoảng cách tối đa mà quái có thể ở xa người chơi
+    public float maxDistance = 50f; // Khoảng cách tối đa mà quái có thể ở xa người chơi
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

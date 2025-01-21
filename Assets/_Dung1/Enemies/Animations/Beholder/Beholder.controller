@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   attackDistance: 4
+  maxDistance: 50
 --- !u!1107 &-3540135289092368560
 AnimatorStateMachine:
   serializedVersion: 6
