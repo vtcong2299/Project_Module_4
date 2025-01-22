@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 5688648766052522462}
   m_Layer: 0
   m_Name: TentacleD05
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -263,9 +263,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4918695171932800463}
+  - component: {fileID: 4519998932044891658}
   m_Layer: 0
-  m_Name: TentacleA05
-  m_TagString: Untagged
+  m_Name: TentacleA05_atk
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -285,6 +286,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 41400095934897715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4519998932044891658
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778100667351618513}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.1, z: 2.3045437}
+  m_Center: {x: 0.0000004621531, y: 0.0000006659399, z: -0.847733}
 --- !u!1 &2065373153721217449
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +477,7 @@ GameObject:
   - component: {fileID: 459625477859220012}
   m_Layer: 0
   m_Name: TentacleB05
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -518,7 +540,7 @@ GameObject:
   - component: {fileID: 646487039397724205}
   m_Layer: 0
   m_Name: TentacleF05
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -990,7 +1012,7 @@ GameObject:
   - component: {fileID: 5833721035768644717}
   m_Layer: 0
   m_Name: TentacleC05
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1069,7 +1091,7 @@ GameObject:
   - component: {fileID: 8954717461932098596}
   m_Layer: 0
   m_Name: TentacleE05
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1272,7 +1294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 100
   damage: 10
-  exp: 10
+  exp: 20
   isDead: 0
 --- !u!1 &7260695548023504157
 GameObject:

@@ -64,4 +64,9 @@ public class Enemy : MonoBehaviour
             // Viết hàm hiện damage ở đây
         }
     }
+
+    public float GetDamage()
+    {
+        return damage;
+    }
 }

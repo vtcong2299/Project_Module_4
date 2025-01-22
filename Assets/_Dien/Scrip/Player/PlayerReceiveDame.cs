@@ -14,4 +14,11 @@ public class PlayerReceiveDame : DameReceiver
     {
         UpdateHP.Instance.ToUpdateHP(hp);
     }
+
+    private void OnCollisionEnter(Collision other) {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Receiver(other.gameObject.GetComponent<Enemy>().GetDamage());
+        }
+    }
 }
