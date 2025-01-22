@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnPlayerBehaviour : StateMachineBehaviour
+public class ParamSetterOnState : StateMachineBehaviour
 {
-    readonly string spawnParam = "isSpawning";
+    [SerializeField]
+    string theParam;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool(spawnParam, true);
+        animator.SetBool(theParam, true);
     }
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool(spawnParam, false);
+        animator.SetBool(theParam, false);
     }
 }

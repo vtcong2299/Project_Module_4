@@ -13,18 +13,35 @@ public class Enemy : MonoBehaviour
 
     public bool isDead;
 
+    int HPSave;
+
     private void Awake() {
         animator = GetComponent<Animator>();
+        HPSave = HP;
     }
 
     List<IOnEnemyDie> onDie;
+    Transform playerTransform;
     public void SetDependencies(ITransformGettable player, List<IOnEnemyDie> enemyDieCalls)
     {
         onDie = enemyDieCalls;
+        playerTransform = player._transform;
+        SetUpBehaviours();
+    }
+
+    private void SetUpBehaviours()
+    {
         foreach (var behaviour in animator.GetBehaviours<EnemyBehaviourBase>())
         {
-            behaviour.SetPlayerTransform(player._transform);
+            behaviour.SetPlayerTransform(playerTransform);
         }
+    }
+
+    public void Revive()
+    {
+        SetUpBehaviours();
+        HP = HPSave;
+        isDead = false;
     }
 
     public void TakeDamage(int damageAmount)

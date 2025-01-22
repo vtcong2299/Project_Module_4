@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b872c2deab27b449bd4d1cd703104f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theParam: isSpawning
 --- !u!1101 &9187198323082597382
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
