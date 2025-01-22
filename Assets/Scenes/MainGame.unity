@@ -5889,6 +5889,9 @@ MonoBehaviour:
   damage: 10
   moveSpeed: 10
   enemy: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!135 &1019738206
 SphereCollider:
   m_ObjectHideFlags: 0
