@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private int HP;
+    [SerializeField] private float HP;
 
-    [SerializeField] private int damage; //Sát thưởng của quái gây lên người chơi
+    [SerializeField] private float damage; //Sát thưởng của quái gây lên người chơi
 
-    [SerializeField] private int exp; //Kinh nghiệm rớt ra khi quái chết
+    [SerializeField] private float exp; //Kinh nghiệm rớt ra khi quái chết
     private Animator animator;
 
     public bool isDead;
 
-    int HPSave;
+    float HPSave;
 
     private void Awake() {
         animator = GetComponent<Animator>();
@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         isDead = false;
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         if (isDead){
             return;
