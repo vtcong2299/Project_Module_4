@@ -41,9 +41,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5141885181658768692}
+  - component: {fileID: 8158815116270153811}
   m_Layer: 0
-  m_Name: UppderEyeLid
-  m_TagString: Untagged
+  m_Name: UppderEyeLid_atk
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,6 +64,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4961264225426297231}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8158815116270153811
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254452263840297386}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 1.1141654, z: 0.5}
+  m_Center: {x: -1.0974797e-15, y: -0.30708277, z: 0.000000036607112}
 --- !u!1 &588335560300308976
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,7 +888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 100
   damage: 10
-  exp: 10
+  exp: 20
   isDead: 0
 --- !u!1 &7711055616935359948
 GameObject:

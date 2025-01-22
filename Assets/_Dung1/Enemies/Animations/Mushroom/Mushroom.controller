@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mushroom_Attack01Angry
-  m_Speed: 1
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -3281679452293716756}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301814d36cc4d664292b940ea12c0b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopAttackDistance: 2.5
+  stopAttackDistance: 1.5
 --- !u!1107 &-4481669208430512706
 AnimatorStateMachine:
   serializedVersion: 6
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  attackDistance: 2.5
+  attackDistance: 1.5
   maxDistance: 50
 --- !u!91 &9100000
 AnimatorController:

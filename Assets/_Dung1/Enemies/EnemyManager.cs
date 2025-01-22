@@ -117,6 +117,7 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
     //Hàm chuyển wave
     private IEnumerator NextWave()
     {
+        enemyInWave += currentWave * 2;
         enemyAlive = enemyInWave * 2;
         yield return new WaitForSeconds(timeBetweenWaves);
         currentWave++;
