@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,6 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     Animator animator;
     readonly string idleState = "EllenIdle";
-    readonly string attackState = "EllenAttack";
     readonly float transitionTime = 0.2f;
 
     Quaternion angleSave;
@@ -25,16 +25,11 @@ public class PlayerAnimationEvents : MonoBehaviour
         transform.rotation = angleSave;
     }
 
-    public void OnIleMiddle()
+    public void OnAttackStart()
     {
-        if (target.position.y < 0)
-        {
-            return;
-        }
         angleSave = transform.rotation;
         Vector3 direction = target.position - transform.position;
         direction.y = transform.position.y;
         transform.forward = direction.normalized;
-        animator.Play(attackState);
     }
 }

@@ -36,6 +36,6 @@ public class PanelPauseGame : MonoBehaviour
     void ClickRestartButton()
     {
         AudioManager.Instance.SoundClickButton();
-        
+        UIManager.Instance.LoadScene("MainGame");
     }
 }

@@ -8,7 +8,9 @@ public class PlayerAnim : MonoBehaviour
     string isRunHash = "isRun";
     string isDeadHash = "isDead";
     string isSpawnHash = "isSpawning";
-    string isAttackHash = "isAttacking";    
+    string isAttackHash = "isAttacking";   
+    string isIdleHash = "isIdling";
+    string attackStateName = "EllenAttack";
 
 
     public void SetRun(bool isRunning)
@@ -29,5 +31,15 @@ public class PlayerAnim : MonoBehaviour
     public bool IsAttacking()
     {
         return animator.GetBool(isAttackHash);
+    }
+
+    public bool IsIdling()
+    {
+        return animator.GetBool(isIdleHash);
+    }
+
+    public void TriggerAttack()
+    {
+        animator.Play(attackStateName);
     }
 }

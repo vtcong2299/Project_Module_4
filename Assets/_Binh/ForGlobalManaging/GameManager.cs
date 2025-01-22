@@ -8,7 +8,7 @@ public class GameManager : Singleton<GameManager>, IOnGameOver, IOnGamePause, IO
     IOnGameStates gameRunner;
     [SerializeField]
     Initializer initializer;
-    public GameData gameData;
+
     public Action onGameOverAction => () => SetGameState(GameState.None);
 
     public Action onGamePauseAction => () =>
@@ -64,13 +64,6 @@ public class GameManager : Singleton<GameManager>, IOnGameOver, IOnGamePause, IO
         gameState = state;
     }
 
-    public void OnAttack(CharacterBase attacker, CharacterBase damageTaker)
-    {
-        if (damageTaker != null && attacker != null)
-        {
-            damageTaker.BeAttacked(attacker._damage);
-        }
-    }
     public void OutGame()
     {
         Application.Quit();

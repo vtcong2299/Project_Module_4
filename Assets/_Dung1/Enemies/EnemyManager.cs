@@ -125,18 +125,13 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
         StartCoroutine(SpawnEnemies(-new Vector3(0, 0, spawnDistance)));
     }
 
-    public void OnEnemyDie(int exp)
+    public void OnEnemyDie(float exp)
     {
         enemyAlive--;
         if (enemyAlive == 0)
         {
             StartCoroutine(NextWave());
         }
-    }
-
-    public void OnEnemyDie(float exp)
-    {
-        throw new System.NotImplementedException();
     }
 
     //Hàm chuyển round
