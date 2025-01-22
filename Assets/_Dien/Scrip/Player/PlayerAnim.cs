@@ -8,6 +8,7 @@ public class PlayerAnim : MonoBehaviour
     string isRunHash = "isRun";
     string isDeadHash = "isDead";
     string isSpawnHash = "isSpawning";
+    string isAttackHash = "isAttacking";    
 
 
     public void SetRun(bool isRunning)
@@ -23,5 +24,10 @@ public class PlayerAnim : MonoBehaviour
     public bool IsSpawning()
     {
         return animator.GetBool(isSpawnHash);
+    }
+
+    public bool IsAttacking()
+    {
+        return animator.GetBool(isAttackHash);
     }
 }

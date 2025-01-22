@@ -23,7 +23,7 @@ public class PlayerCtrl : Singleton<PlayerCtrl>, IOnGamePause, IOnGameRunning, I
 
     private void Update()
     {
-        if (gamePause || playerAnim.IsSpawning())
+        if (gamePause || playerAnim.IsSpawning() || playerAnim.IsAttacking())
         {
             return;
         }
