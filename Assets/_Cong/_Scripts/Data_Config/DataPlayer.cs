@@ -104,4 +104,9 @@ public class DataPlayer : Singleton<DataPlayer>, IOnEnemyDie, IOnGameStart<IGame
     {
         LevelUp(exp);
     }
+
+    public void OnEnemyDie(float exp)
+    {
+        throw new NotImplementedException();
+    }
 }

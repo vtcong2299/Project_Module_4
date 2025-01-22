@@ -133,6 +133,11 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
         }
     }
 
+    public void OnEnemyDie(float exp)
+    {
+        throw new System.NotImplementedException();
+    }
+
     //Hàm chuyển round
 
 }

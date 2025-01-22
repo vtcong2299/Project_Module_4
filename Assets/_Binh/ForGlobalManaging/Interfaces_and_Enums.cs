@@ -10,12 +10,12 @@ public interface IAttackable
 
 public interface IBeAttackedable
 {
-    void BeAttacked(int damage);
+    void BeAttacked(float damage);
 }
 
 public interface IOnEnemyDie
 {
-    void OnEnemyDie(int exp);
+    void OnEnemyDie(float exp);
 }
 
 public interface IRespawnable
