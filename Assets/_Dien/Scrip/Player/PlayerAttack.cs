@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
 {
     [SerializeField] Transform player; // Vị trí player, tâm bám kính tìm kiếm enemy
-    [SerializeField] float detectionRadius = 25f; // Bán kính tìm kiếm
+    [SerializeField] float detectionRadius = 20f; // Bán kính tìm kiếm
     [SerializeField] float delayTime = 2f; // Khoản cách giữa các lầm tìm kiếm enemy mới
-    [SerializeField] GameObject closetEnemy;
+    public GameObject closestEnemy;
     [SerializeField] GameObject virtualEnemy;
 
     [SerializeField] GameObject targerRing;
@@ -30,20 +30,20 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
     {
         while (true)
         {
-            closetEnemy = FindClosestEnemy();
+            closestEnemy = FindClosestEnemy();
             yield return new WaitForSeconds(delayTime);
         }
     }
-    GameObject FindClosestEnemy()
+    public GameObject FindClosestEnemy()
     {
         Collider[] colliders = Physics.OverlapSphere(player.position, detectionRadius);
-        GameObject closet = null;
+        GameObject closest = null;
         float shortesDistance = Mathf.Infinity;
 
         
         if (colliders.Length == 0)
         {
-            closet = virtualEnemy;
+            closest = virtualEnemy;
         }
         else
         {
@@ -55,24 +55,24 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
                     if (distance < shortesDistance)
                     {
                         shortesDistance = distance;
-                        closet = collider.gameObject;
-                        checkPoint = closet.transform;
+                        closest = collider.gameObject;
+                        checkPoint = closest.transform;
                     }
                 }
             }
         }
         
-        return closet;
+        return closest;
     }
     void TargetRing()
     {
-        if (closetEnemy == null)
+        if (closestEnemy == null)
         {
             targerRing.transform.position = new Vector3 (targerRing.transform.position.x, -5f, targerRing.transform.position.z);
         }
         else
         {
-            targerRing.transform.position = closetEnemy.transform.position;
+            targerRing.transform.position = closestEnemy.transform.position;
         }
     }
 
