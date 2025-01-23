@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletSpawner : MonoBehaviour
+public class BulletSpawner : MonoBehaviour, ISpawnable
 {
     public Transform spawnOrigin;
+    public GameObject prefab;
+    public float spawnDelay = 0.05f;
     public List<GameObject> objPool;
     public List<GameObject> activeObjs;
-    public GameObject preFab;
-    public float spawnDelay = 1f;
-    public int maxObj = 2;
+
     private void Awake()
     {
         objPool = new List<GameObject>();
         activeObjs = new List<GameObject>();
     }
+
     IEnumerator Spawn()
     {
         yield return new WaitForSeconds(spawnDelay);
@@ -24,7 +25,8 @@ public class BulletSpawner : MonoBehaviour
         }
         else
         {
-            GameObject obj = Instantiate(preFab, spawnOrigin.position, Quaternion.identity, transform);
+            GameObject obj = Instantiate(prefab, spawnOrigin.position, Quaternion.identity, transform);
+            obj.GetComponent<Bullet>().SetOnReachTarget(pushedObj => PushToPool(pushedObj));
             activeObjs.Add(obj);
         }
     }
@@ -49,5 +51,10 @@ public class BulletSpawner : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void ToSpawn()
+    {
+        StartCoroutine(Spawn());
     }
 }

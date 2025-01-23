@@ -15,6 +15,7 @@ public class Initializer
     IGameData gameData;
     IDataManipulator dataManipulator;
     IRespawnable respawner;
+    ISpawnable spawner;
 
     public void InjectAllAtGameStart()
     {
@@ -48,6 +49,10 @@ public class Initializer
             {
                 respawner = iRespawnable;
             }
+            if (obj.TryGetComponent(out ISpawnable iSpawnable))
+            {
+                spawner = iSpawnable;
+            }
 
             gameElements.AddRange(obj.GetComponents<IOnGame>());
         }
@@ -60,6 +65,7 @@ public class Initializer
         statesRunner.OnGameStart(enemyDieDependencies);
         statesRunner.OnGameStart(transformProvider);
         statesRunner.OnGameStart(respawner);
+        statesRunner.OnGameStart(spawner);
         DataGamePlay.Instance.StartDataGamePlay();
         statesRunner.OnGameStart(gameData);
         statesRunner.OnGameStart(dataManipulator);

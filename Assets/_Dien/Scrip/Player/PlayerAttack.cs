@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
+public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameStart<ISpawnable>
 {
     [SerializeField] Transform player; // Vị trí player, tâm bám kính tìm kiếm enemy
     [SerializeField] float detectionRadius = 20f; // Bán kính tìm kiếm
@@ -17,8 +17,11 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
 
     IRespawnable respawner;
     Transform checkPoint;
+    ISpawnable bulletSpawner;
 
-    public Action<IRespawnable> onGameStartAction => spawner => respawner = spawner;
+    Action<IRespawnable> IOnGameStart<IRespawnable>.onGameStartAction => spawner => respawner = spawner;
+
+    Action<ISpawnable> IOnGameStart<ISpawnable>.onGameStartAction => spawner => bulletSpawner = spawner;
 
     private void Start()
     {
@@ -110,6 +113,7 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
         if (canAttack && closestEnemy != null && playerAnim.IsIdling())
         {
             playerAnim.TriggerAttack();
+            bulletSpawner.ToSpawn();
             canAttack = false;
         }
     }

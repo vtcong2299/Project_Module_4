@@ -14,6 +14,11 @@ public interface IRespawnable
     void Respawn();
 }
 
+public interface ISpawnable
+{
+    void ToSpawn();
+}
+
 public interface ITransformGettable
 {
     Transform _transform { get; }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class Bullet : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] GameObject enemy;
     [SerializeField] LayerMask enemyLayer;
+
+    Action<GameObject> onReachTarget;
 
     void Update()
     {
@@ -30,7 +33,7 @@ public class Bullet : MonoBehaviour
             {
                 // Gọi hàm SendDamage trên đối tượng trúng
                 target.TakeDamage(damage);
-                Destroy(gameObject);
+                onReachTarget.Invoke(gameObject);
             }
         }
     }
@@ -40,5 +43,10 @@ public class Bullet : MonoBehaviour
 
         // Di chuyển đạn theo hướng đó
         transform.position += direction * moveSpeed * Time.deltaTime;
+    }
+
+    public void SetOnReachTarget(Action<GameObject> action)
+    {
+        onReachTarget = action;
     }
 }
