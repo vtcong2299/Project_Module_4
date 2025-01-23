@@ -55,7 +55,6 @@ public class Enemy : MonoBehaviour
         if (HP <= 0)
         {
             isDead = true;
-            EnemyManager.Instance.enemyAlive--;
             foreach (var act in onDie)
             {
                 act.OnEnemyDie(exp);
