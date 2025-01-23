@@ -2871,6 +2871,8 @@ MonoBehaviour:
   spawnOrigin: {fileID: 977747296}
   prefab: {fileID: 7601363294510083959, guid: 2ebe57dce74a69442aff5067957d34f1, type: 3}
   spawnDelay: 0.05
+  objPool: []
+  activeObjs: []
 --- !u!1 &557720231
 GameObject:
   m_ObjectHideFlags: 0
@@ -6466,9 +6468,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075868729}
   serializedVersion: 4
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
+  m_Mass: 100
+  m_Drag: 99
+  m_AngularDrag: 99
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

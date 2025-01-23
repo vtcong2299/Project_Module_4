@@ -54,11 +54,14 @@ public class Enemy : MonoBehaviour
 
         if (HP <= 0)
         {
+            isDead = true;
+            EnemyManager.Instance.enemyAlive--;
             foreach (var act in onDie)
             {
                 act.OnEnemyDie(exp);
             }
             animator.SetTrigger("isDead");
+            StartCoroutine(DeactiveAfterDelay());
         } else {
             animator.SetTrigger("damaged");
             // Viết hàm hiện damage ở đây
@@ -68,5 +71,11 @@ public class Enemy : MonoBehaviour
     public float GetDamage()
     {
         return damage;
+    }
+
+    private IEnumerator DeactiveAfterDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
     }
 }
