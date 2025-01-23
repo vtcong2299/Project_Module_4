@@ -103,7 +103,7 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
             timeElapsed = 0;
             canAttack = true;
         }
-        if (canAttack && closetEnemy != null && playerAnim.IsIdling())
+        if (canAttack && closestEnemy != null && playerAnim.IsIdling())
         {
             playerAnim.TriggerAttack();
             canAttack = false;
