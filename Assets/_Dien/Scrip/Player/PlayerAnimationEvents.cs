@@ -21,8 +21,8 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void OnAttackEnd()
     {
-        animator.CrossFade(idleState, transitionTime);
         transform.rotation = angleSave;
+        animator.CrossFade(idleState, transitionTime);
     }
 
     public void OnAttackStart()

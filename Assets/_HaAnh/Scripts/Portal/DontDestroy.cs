@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class DontDestroyManager : MonoBehaviour
 {
+    static DontDestroyManager instance;
     private void Awake()
     {
-        // Đảm bảo đối tượng không bị phá hủy khi chuyển scene
-        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

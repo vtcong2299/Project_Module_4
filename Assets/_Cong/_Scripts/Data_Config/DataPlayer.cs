@@ -100,13 +100,8 @@ public class DataPlayer : Singleton<DataPlayer>, IOnEnemyDie, IOnGameStart<IGame
         this.exp += exp;
     }
 
-    public void OnEnemyDie(int exp)
-    {
-        LevelUp(exp);
-    }
-
     public void OnEnemyDie(float exp)
     {
-        throw new NotImplementedException();
+        LevelUp(exp);
     }
 }

@@ -27,10 +27,14 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
     }
     void Update()
     {
-        AnimateAttack();
         TargetRing();
         CheckDistanceAndRespawn();
     }
+    void FixedUpdate()
+    {
+        ToAttack();
+    }
+
     IEnumerator FindClosestEnemyCoroutine()
     {
         while (true)
@@ -95,9 +99,9 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
         }
     }
 
-    void AnimateAttack()
+    void ToAttack()
     {
-        timeElapsed += Time.deltaTime;
+        timeElapsed += Time.fixedDeltaTime;
         if (timeElapsed >= DataPlayer.Instance.attackSpeedMax)
         {
             timeElapsed = 0;

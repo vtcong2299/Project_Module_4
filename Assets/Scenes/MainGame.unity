@@ -1405,7 +1405,7 @@ MonoBehaviour:
   panelPowerUp: {fileID: 959244717}
   panelGameOver: {fileID: 956656631}
   panelOptions: {fileID: 1062839596}
-  panelLoadScene: {fileID: 27773086}
+  panelLoadScene: {fileID: 27773091}
   canvasGroupGamePlay: {fileID: 1524466524}
   canvasGroupPauseGame: {fileID: 210928951}
   canvasGroupQuitGame: {fileID: 1945843638}
