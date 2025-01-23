@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
             isDead = true;
             foreach (var act in onDie)
             {
-                act.OnEnemyDie(exp);
+                act.OnEnemyDie(gameObject, exp);
             }
             animator.SetTrigger("isDead");
             StartCoroutine(DeactiveAfterDelay());

@@ -611,7 +611,7 @@ Transform:
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 162735394}
+  m_Father: {fileID: 1385061501}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &95875129
 SpriteRenderer:
@@ -1200,9 +1200,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8ac9e95bbfc8f40b3ea97dca73a428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 190836154}
   detectionRadius: 25
   delayTime: 2
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
   closestEnemy: {fileID: 0}
   virtualEnemy: {fileID: 1384750088}
   targerRing: {fileID: 1624573702}
@@ -6449,9 +6451,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8ac9e95bbfc8f40b3ea97dca73a428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1075868730}
   detectionRadius: 15
   delayTime: 2
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 128
   closestEnemy: {fileID: 0}
   virtualEnemy: {fileID: 957955236}
   targerRing: {fileID: 95875127}
@@ -7956,6 +7960,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 190836154}
+  - {fileID: 95875128}
   - {fileID: 1075868730}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10007,9 +10012,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 400166, guid: a5674d01884853d4e8f2386a171e14d9, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 95875128}
     - targetCorrespondingSourceObject: {fileID: 400166, guid: a5674d01884853d4e8f2386a171e14d9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 957955237}

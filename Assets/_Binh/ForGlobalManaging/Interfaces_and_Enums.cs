@@ -5,7 +5,7 @@ using UnityEngine;
 #region Interfaces
 public interface IOnEnemyDie
 {
-    void OnEnemyDie(float exp);
+    void OnEnemyDie(GameObject dyingEnemy, float exp);
 }
 
 public interface IRespawnable

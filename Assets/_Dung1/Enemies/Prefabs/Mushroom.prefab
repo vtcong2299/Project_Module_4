@@ -587,7 +587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8299270894663614885}
   - component: {fileID: 7254933936337742085}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: mushroom_skirt01_atk
   m_TagString: Untagged
   m_Icon: {fileID: 0}

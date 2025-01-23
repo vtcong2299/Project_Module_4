@@ -325,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3991229836408343359}
   - component: {fileID: 1081170524825411761}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: cactus_leftHandTip_atk
   m_TagString: Untagged
   m_Icon: {fileID: 0}

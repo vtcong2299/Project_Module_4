@@ -2,11 +2,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameStart<ISpawnable>
+public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameStart<ISpawnable>, IOnEnemyDie
 {
-    [SerializeField] Transform player; // Vị trí player, tâm bám kính tìm kiếm enemy
     [SerializeField] float detectionRadius = 15f; // Bán kính tìm kiếm
     [SerializeField] float delayTime = 2f; // Khoản cách giữa các lầm tìm kiếm enemy mới
+    [SerializeField] LayerMask enemyMask;
     public GameObject closestEnemy;
     [SerializeField] GameObject virtualEnemy;
 
@@ -30,7 +30,6 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameSt
     }
     void Update()
     {
-        TargetRing();
         CheckDistanceAndRespawn();
     }
     void FixedUpdate()
@@ -42,47 +41,43 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameSt
     {
         while (true)
         {
-                closestEnemy = FindClosestEnemy();
+            closestEnemy = FindClosestEnemy();
+            if (closestEnemy != null)
+            {
+                targerRing.transform.position = new Vector3 (closestEnemy.transform.position.x, 0.1f, closestEnemy.transform.position.z);
+                targerRing.transform.SetParent(closestEnemy.transform);
+            }
+            else
+            {
+                targerRing.transform.position = new Vector3(targerRing.transform.position.x, -5f, targerRing.transform.position.z);
+            }
             yield return new WaitForSeconds(delayTime);
         }
     }
     public GameObject FindClosestEnemy()
     {
-        Collider[] colliders = Physics.OverlapSphere(player.position, detectionRadius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius, enemyMask);
         GameObject closest = null;
         float shortestDistance = Mathf.Infinity;
+
         if (colliders.Length == 0)
         {
-            closest = virtualEnemy;
+            return closest;
         }
         else
         {
             foreach (Collider collider in colliders)
             {
-                if (collider.CompareTag("Enemy"))
+                float distance = Vector3.Distance(transform.position, collider.transform.position);
+                if (distance < shortestDistance)
                 {
-                    float distance = Vector3.Distance(player.position, collider.transform.position);
-                    if (distance < shortestDistance)
-                    {
-                        shortestDistance = distance;
-                        closest = collider.gameObject;
-                        checkPoint = closest.transform;
-                    }
+                    shortestDistance = distance;
+                    closest = collider.gameObject;
+                    checkPoint = closest.transform;
                 }
             }
         }
         return closest;
-    }
-    void TargetRing()
-    {
-        if (closestEnemy == null)
-        {
-            targerRing.transform.position = new Vector3 (targerRing.transform.position.x, -5f, targerRing.transform.position.z);
-        }
-        else
-        {
-            targerRing.transform.position = closestEnemy.transform.position;
-        }
     }
 
     void CheckDistanceAndRespawn()
@@ -116,6 +111,15 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameSt
             playerAnim.TriggerAttack();
             bulletSpawner.ToSpawn();
             canAttack = false;
+        }
+    }
+
+    public void OnEnemyDie(GameObject dyingEnemy, float exp)
+    {
+        if (closestEnemy == dyingEnemy)
+        {
+            targerRing.transform.position = new Vector3(targerRing.transform.position.x, -5f, targerRing.transform.position.z);
+            closestEnemy = null;
         }
     }
 }

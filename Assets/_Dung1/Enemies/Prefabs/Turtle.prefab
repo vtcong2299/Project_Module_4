@@ -496,7 +496,7 @@ GameObject:
   m_Component:
   - component: {fileID: 425983558006082257}
   - component: {fileID: 2192589687469905122}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: HornMidTip03_atk
   m_TagString: Untagged
   m_Icon: {fileID: 0}

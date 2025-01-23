@@ -135,7 +135,7 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
         StartCoroutine(SpawnEnemies(-new Vector3(0, 0, spawnDistance)));
     }
 
-    public void OnEnemyDie(float exp)
+    public void OnEnemyDie(GameObject dyingEnemy, float exp)
     {
         enemyAlive--;
         if (enemyAlive <= 0)
