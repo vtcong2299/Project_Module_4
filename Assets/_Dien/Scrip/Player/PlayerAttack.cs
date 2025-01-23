@@ -11,6 +11,9 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
     [SerializeField] GameObject virtualEnemy;
 
     [SerializeField] GameObject targerRing;
+    PlayerAnim playerAnim;
+    float timeElapsed = 0f;
+    bool canAttack;
 
     IRespawnable respawner;
     Transform checkPoint;
@@ -19,10 +22,12 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
 
     private void Start()
     {
+        playerAnim = GetComponent<PlayerAnim>();
         StartCoroutine(FindClosestEnemyCoroutine());
     }
     void Update()
     {
+        AnimateAttack();
         TargetRing();
         CheckDistanceAndRespawn();
     }
@@ -87,6 +92,21 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>
         {
             checkPoint = virtualEnemy.transform;
             respawner.Respawn();
+        }
+    }
+
+    void AnimateAttack()
+    {
+        timeElapsed += Time.deltaTime;
+        if (timeElapsed >= DataPlayer.Instance.attackSpeedMax)
+        {
+            timeElapsed = 0;
+            canAttack = true;
+        }
+        if (canAttack && closetEnemy != null && playerAnim.IsIdling())
+        {
+            playerAnim.TriggerAttack();
+            canAttack = false;
         }
     }
 }

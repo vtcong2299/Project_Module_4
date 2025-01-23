@@ -3,16 +3,6 @@ using System.Collections;
 using UnityEngine;
 
 #region Interfaces
-public interface IAttackable
-{
-    int _damage { get; }
-}
-
-public interface IBeAttackedable
-{
-    void BeAttacked(float damage);
-}
-
 public interface IOnEnemyDie
 {
     void OnEnemyDie(float exp);

@@ -16,11 +16,11 @@ public class PanelGameOver : MonoBehaviour
     void ClickReplayButton()
     {
         AudioManager.Instance.SoundClickButton();
-        UIManager.Instance.OnDisablePanelGameOver();
+        UIManager.Instance.LoadScene("MainGame");
     }
     void ClickHomeButton()
     {
         AudioManager.Instance.SoundClickButton();
-        
+        UIManager.Instance.LoadScene("MenuScene");
     }
 }
