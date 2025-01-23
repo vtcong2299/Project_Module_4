@@ -10,6 +10,7 @@ public class PlayerCtrl : Singleton<PlayerCtrl>, IOnGamePause, IOnGameRunning, I
     [SerializeField] Rigidbody rb;
     [SerializeField] PlayerAnim playerAnim;
     public PlayerReceiveDame playerReceiveDame;
+    public PlayerAttack playerAttack;
     [SerializeField] DataPlayer playerData;
     float vertical;
     float horizontal;

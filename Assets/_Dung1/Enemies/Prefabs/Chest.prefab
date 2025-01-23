@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1105235596215748087}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontRightLeg01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,9 +42,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5141885181658768692}
   - component: {fileID: 8158815116270153811}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UppderEyeLid_atk
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +94,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 841077858867119716}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontRightLeg02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5469356693693248430}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RearRightLeg02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3079043223317257527}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4641753428492216646}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RearRightLeg03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7140832601604592608}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LockCTRL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7413059842600474443}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5142025741822839885}
   - component: {fileID: 7188074577776190772}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ChestMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4177591240104479827}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RearLeftLeg03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4369814432184428914}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LowerEyelid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2403431360001286113}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontLeftLeg03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4461310870329858140}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RearLeftLeg01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9071013485311891513}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UpperTeethCTRL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6904235982944725634}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LowerTeethCTRL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2140269152895242245}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RearRightLeg01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -611,7 +611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4961264225426297231}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EyeCTRL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 19471836754289284}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -683,7 +683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5248985126276928503}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontLeftLeg02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8709322116087505903}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EyeBallCTRL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -746,7 +746,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5598733505430492673}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontRightLeg03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -781,7 +781,7 @@ GameObject:
   - component: {fileID: 4237273275091212588}
   - component: {fileID: 49613016705455594}
   - component: {fileID: 5252303870008956547}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chest
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -899,7 +899,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8770921944646532890}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RearLeftLeg02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -931,7 +931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1637145713451243019}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontLeftLeg01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
