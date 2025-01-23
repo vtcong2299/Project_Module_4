@@ -118,9 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49bb800cd95d30438ea6e8889b62582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
-  damage: 10
-  exp: 20
+  HP: 40
+  damage: 5
+  exp: 2
   isDead: 0
 --- !u!1 &409680626430743118
 GameObject:

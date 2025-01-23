@@ -11,11 +11,11 @@ public class GameData
     public double highestWave;
     public bool hasBGM;
     public bool hasSFX;
-    public float damageDefault = 100;
-    public float hpDefault = 1000;
-    public float attackSpeedDefault = 5;
-    public float moveSpeedDefault = 3.5f;
-    public float armorDefault = 20;
+    public float damageDefault = 30;
+    public float hpDefault = 500;
+    public float attackCountdownDefault = 4;
+    public float moveSpeedDefault = 4f;
+    //public float armorDefault = 20;
     public float lifeStealPercentDefault = 0;
 
 }

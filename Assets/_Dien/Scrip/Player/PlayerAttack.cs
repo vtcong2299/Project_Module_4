@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameStart<ISpawnable>
 {
     [SerializeField] Transform player; // Vị trí player, tâm bám kính tìm kiếm enemy
-    [SerializeField] float detectionRadius = 20f; // Bán kính tìm kiếm
+    [SerializeField] float detectionRadius = 15f; // Bán kính tìm kiếm
     [SerializeField] float delayTime = 2f; // Khoản cách giữa các lầm tìm kiếm enemy mới
     public GameObject closestEnemy;
     [SerializeField] GameObject virtualEnemy;
@@ -42,7 +42,7 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameSt
     {
         while (true)
         {
-            closestEnemy = FindClosestEnemy();
+                closestEnemy = FindClosestEnemy();
             yield return new WaitForSeconds(delayTime);
         }
     }
@@ -50,9 +50,7 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameSt
     {
         Collider[] colliders = Physics.OverlapSphere(player.position, detectionRadius);
         GameObject closest = null;
-        float shortesDistance = Mathf.Infinity;
-
-        
+        float shortestDistance = Mathf.Infinity;
         if (colliders.Length == 0)
         {
             closest = virtualEnemy;
@@ -64,16 +62,15 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameSt
                 if (collider.CompareTag("Enemy"))
                 {
                     float distance = Vector3.Distance(player.position, collider.transform.position);
-                    if (distance < shortesDistance)
+                    if (distance < shortestDistance)
                     {
-                        shortesDistance = distance;
+                        shortestDistance = distance;
                         closest = collider.gameObject;
                         checkPoint = closest.transform;
                     }
                 }
             }
         }
-        
         return closest;
     }
     void TargetRing()
@@ -104,8 +101,12 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameSt
 
     void ToAttack()
     {
+        if (closestEnemy == null)
+        {
+            return;
+        }
         timeElapsed += Time.fixedDeltaTime;
-        if (timeElapsed >= DataPlayer.Instance.attackSpeedMax)
+        if (timeElapsed >= DataPlayer.Instance.currentAttackCountdown)
         {
             timeElapsed = 0;
             canAttack = true;

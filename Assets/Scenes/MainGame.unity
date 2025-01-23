@@ -1289,15 +1289,13 @@ MonoBehaviour:
   - 1000
   damageMax: 0
   hpMax: 0
-  attackSpeedMax: 0
+  currentAttackCountdown: 0
   moveSpeedMax: 0
-  armorMax: 0
   lifeStealPercentMax: 0
   damagePercentIncreased: 0
   hpPercentIncreased: 0
   attackSpeedPercentIncreased: 0
   moveSpeedPercentIncreased: 0
-  armorPercentIncreased: 0
 --- !u!95 &190836160 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: a5674d01884853d4e8f2386a171e14d9, type: 3}
@@ -4759,9 +4757,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9b3557abaedb23b4fb7e32279caba543, type: 2}
   - {fileID: 11400000, guid: 601e268756cce9d40bc7d965fefb2da8, type: 2}
   - {fileID: 11400000, guid: a0fb1ef07af89384cbda1e0c317407dc, type: 2}
-  - {fileID: 11400000, guid: b78790f05d138d84fa2bc004b0393b86, type: 2}
-  - {fileID: 11400000, guid: 988f0ad23d515f444ae7e715e85d38c4, type: 2}
-  - {fileID: 11400000, guid: ba63f0e302324c947abb2ab062875652, type: 2}
   - {fileID: 11400000, guid: 419dcfaa02a40e145bcb74ec2350d67c, type: 2}
   - {fileID: 11400000, guid: 190a753390437864c9bdfa8178294ca7, type: 2}
   - {fileID: 11400000, guid: 95c2387d8bdc8c044816cc23af780724, type: 2}
@@ -6455,7 +6450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1075868730}
-  detectionRadius: 25
+  detectionRadius: 15
   delayTime: 2
   closestEnemy: {fileID: 0}
   virtualEnemy: {fileID: 957955236}
@@ -6469,8 +6464,8 @@ Rigidbody:
   m_GameObject: {fileID: 1075868729}
   serializedVersion: 4
   m_Mass: 100
-  m_Drag: 99
-  m_AngularDrag: 99
+  m_Drag: 1
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -6504,32 +6499,30 @@ MonoBehaviour:
   exp: 0
   expMax: 0
   exps:
+  - 15
+  - 30
+  - 50
   - 100
+  - 150
   - 200
+  - 250
   - 300
+  - 350
   - 400
+  - 450
   - 500
-  - 700
-  - 1000
-  - 1000
-  - 1000
-  - 1000
-  - 1000
-  - 1000
-  - 1000
-  - 1000
-  - 1000
+  - 550
+  - 600
+  - 650
   damageMax: 0
   hpMax: 0
-  attackSpeedMax: 0
+  currentAttackCountdown: 0
   moveSpeedMax: 0
-  armorMax: 0
   lifeStealPercentMax: 0
   damagePercentIncreased: 0
   hpPercentIncreased: 0
   attackSpeedPercentIncreased: 0
   moveSpeedPercentIncreased: 0
-  armorPercentIncreased: 0
 --- !u!114 &1075868737
 MonoBehaviour:
   m_ObjectHideFlags: 0
