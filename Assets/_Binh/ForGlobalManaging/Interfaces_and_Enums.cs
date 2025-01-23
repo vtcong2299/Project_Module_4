@@ -24,6 +24,11 @@ public interface ITransformGettable
     Transform _transform { get; }
 }
 
+public interface ITarget
+{
+    GameObject someTarget { get; }
+}
+
 public interface IMapGeneratable
 {
     void GenerateUnits(Func<Vector3> PivotSetter = null);

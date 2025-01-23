@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameStart<ISpawnable>, IOnEnemyDie
+public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameStart<ISpawnable>, IOnEnemyDie, ITarget
 {
     [SerializeField] float detectionRadius = 15f; // Bán kính tìm kiếm
     [SerializeField] float delayTime = 2f; // Khoản cách giữa các lầm tìm kiếm enemy mới
@@ -23,6 +23,8 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameSt
 
     Action<ISpawnable> IOnGameStart<ISpawnable>.onGameStartAction => spawner => bulletSpawner = spawner;
 
+    public GameObject someTarget => closestEnemy;
+
     private void Start()
     {
         playerAnim = GetComponent<PlayerAnim>();
@@ -30,6 +32,7 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameSt
     }
     void Update()
     {
+        targerRing.transform.rotation = Quaternion.Euler(90, 0, 0);
         CheckDistanceAndRespawn();
     }
     void FixedUpdate()

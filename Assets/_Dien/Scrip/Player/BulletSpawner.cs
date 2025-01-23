@@ -1,14 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletSpawner : MonoBehaviour, ISpawnable
+public class BulletSpawner : MonoBehaviour, ISpawnable, IOnGameStart<ITransformGettable>, IOnGameStart<ITarget>
 {
     public Transform spawnOrigin;
     public GameObject prefab;
     public float spawnDelay = 0.05f;
     public List<GameObject> objPool;
     public List<GameObject> activeObjs;
+
+    ITransformGettable player;
+    ITarget targetEnemy;
+    Action<ITransformGettable> IOnGameStart<ITransformGettable>.onGameStartAction => theTransform => player = theTransform;
+
+    Action<ITarget> IOnGameStart<ITarget>.onGameStartAction => target => targetEnemy = target;
 
     private void Awake()
     {
@@ -26,7 +33,8 @@ public class BulletSpawner : MonoBehaviour, ISpawnable
         else
         {
             GameObject obj = Instantiate(prefab, spawnOrigin.position, Quaternion.identity, transform);
-            obj.GetComponent<Bullet>().SetOnReachTarget(pushedObj => PushToPool(pushedObj));
+            //obj.GetComponent<Bullet>().SetOnReachTarget(pushedObj => PushToPool(pushedObj));
+            obj.GetComponent<BulletComponent>().SetDependencies(player, targetEnemy, pushedObj => PushToPool(pushedObj));
             activeObjs.Add(obj);
         }
     }

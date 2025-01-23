@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2583996208878949355}
   - component: {fileID: 3856791520027815959}
   - component: {fileID: 5329914942633597816}
+  - component: {fileID: -7116977935376956740}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -113,7 +114,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7601363294510083959}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68ff24cab5f6839418d8e1a6d0ebd8bf, type: 3}
   m_Name: 
@@ -124,3 +125,21 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  hasTarget: 0
+--- !u!114 &-7116977935376956740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7601363294510083959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 031393a4b303f8c4982193c7c51c14fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistanceFromOrigin: 30
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  moveSpeed: 20

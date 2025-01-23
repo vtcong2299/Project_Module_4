@@ -14,8 +14,9 @@ public class Initializer
     IOnGameStates statesRunner;
     IGameData gameData;
     IDataManipulator dataManipulator;
-    IRespawnable respawner;
-    ISpawnable spawner;
+    IRespawnable enemyRespawner;
+    ISpawnable bulletSpawner;
+    ITarget closestEnemy;
 
     public void InjectAllAtGameStart()
     {
@@ -33,10 +34,6 @@ public class Initializer
             {
                 transformProvider = iTransformGettable;
             }
-            if (obj.TryGetComponent(out IOnEnemyDie iOnEnemyDie))
-            {
-                enemyDieDependencies.Add(iOnEnemyDie);
-            }
             if (obj.TryGetComponent(out IGameData iGameData))
             {
                 gameData = iGameData;
@@ -47,12 +44,17 @@ public class Initializer
             }
             if (obj.TryGetComponent(out IRespawnable iRespawnable))
             {
-                respawner = iRespawnable;
+                enemyRespawner = iRespawnable;
             }
             if (obj.TryGetComponent(out ISpawnable iSpawnable))
             {
-                spawner = iSpawnable;
+                bulletSpawner = iSpawnable;
             }
+            if (obj.TryGetComponent(out ITarget iTarget))
+            {
+                closestEnemy = iTarget;
+            }
+            enemyDieDependencies.AddRange(obj.GetComponents<IOnEnemyDie>());
 
             gameElements.AddRange(obj.GetComponents<IOnGame>());
         }
@@ -64,8 +66,9 @@ public class Initializer
         statesRunner.OnGameStart(statesRunner);
         statesRunner.OnGameStart(enemyDieDependencies);
         statesRunner.OnGameStart(transformProvider);
-        statesRunner.OnGameStart(respawner);
-        statesRunner.OnGameStart(spawner);
+        statesRunner.OnGameStart(enemyRespawner);
+        statesRunner.OnGameStart(bulletSpawner);
+        statesRunner.OnGameStart(closestEnemy);
         DataGamePlay.Instance.StartDataGamePlay();
         statesRunner.OnGameStart(gameData);
         statesRunner.OnGameStart(dataManipulator);
