@@ -14,7 +14,14 @@ public class PlayerReceiveDame : DameReceiver
     {
         UpdateHP.Instance.ToUpdateHP(hp);
     }
-
+    public void HealHp(float damage)
+    {
+        hp += damage * dataPlayer.lifeStealPercentMax;
+        if (hp > dataPlayer.hpMax)
+        {
+            hp = dataPlayer.hpMax;
+        }
+    }
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Enemy"))
         {

@@ -13,22 +13,22 @@ public class DataPlayer : Singleton<DataPlayer>, IOnEnemyDie, IOnGameStart<IGame
      
     float damageDefault;
     float hpDefault;
-    float attackSpeedDefault;
+    float attackCountdownDefault;
     float moveSpeedDefault;
-    float armorDefault;
+    //float armorDefault;
     float lifeStealPercentDefault;
 
     public float damageMax;
     public float hpMax;
-    public float attackSpeedMax;
+    public float currentAttackCountdown;
     public float moveSpeedMax;
-    public float armorMax;
+    //public float armorMax;
     public float lifeStealPercentMax;
     [SerializeField] float damagePercentIncreased = 0;
     [SerializeField] float hpPercentIncreased = 0;
     [SerializeField] float attackSpeedPercentIncreased = 0;
     [SerializeField] float moveSpeedPercentIncreased = 0;
-    [SerializeField] float armorPercentIncreased = 0;
+    //[SerializeField] float armorPercentIncreased = 0;
 
     IGameData gameData;
 
@@ -39,9 +39,9 @@ public class DataPlayer : Singleton<DataPlayer>, IOnEnemyDie, IOnGameStart<IGame
     {
          damageDefault = gameData.data.damageDefault;
          hpDefault = gameData.data.hpDefault;
-         attackSpeedDefault = gameData.data.attackSpeedDefault;
+         attackCountdownDefault = gameData.data.attackCountdownDefault;
          moveSpeedDefault = gameData.data.moveSpeedDefault;
-         armorDefault = gameData.data.armorDefault;
+         //armorDefault = gameData.data.armorDefault;
          lifeStealPercentDefault = gameData.data.lifeStealPercentDefault;
          ResetDataPlayer();
          curentLevel = 1;
@@ -53,7 +53,7 @@ public class DataPlayer : Singleton<DataPlayer>, IOnEnemyDie, IOnGameStart<IGame
         hpPercentIncreased += buff.hp;
         attackSpeedPercentIncreased += buff.attackSpeed;
         moveSpeedPercentIncreased += buff.moveSpeed;
-        armorPercentIncreased += buff.armor;
+        //armorPercentIncreased += buff.armor;
         lifeStealPercentMax += buff.lifeSteal;
         RecalculateStats();
     }
@@ -61,23 +61,24 @@ public class DataPlayer : Singleton<DataPlayer>, IOnEnemyDie, IOnGameStart<IGame
     {
         damageMax = damageDefault;
         hpMax = hpDefault;
-        attackSpeedMax = attackSpeedDefault;
+        currentAttackCountdown = attackCountdownDefault;
         moveSpeedMax = moveSpeedDefault;
-        armorMax = armorDefault;
+        //armorMax = armorDefault;
         lifeStealPercentMax = lifeStealPercentDefault;
         damagePercentIncreased = 0;
         hpPercentIncreased = 0;
         attackSpeedPercentIncreased = 0;
         moveSpeedPercentIncreased = 0;
-        armorPercentIncreased = 0;
+        //armorPercentIncreased = 0;
     }
     void RecalculateStats()
     {
         damageMax = damageDefault * ((damagePercentIncreased/100)+1);
         hpMax = hpDefault * ((hpPercentIncreased / 100)+1);
-        attackSpeedMax = attackSpeedDefault * ((attackSpeedPercentIncreased / 100)+1);
-        moveSpeedMax = moveSpeedDefault * ((moveSpeedPercentIncreased / 100)+1);
-        armorMax = armorDefault * ((armorPercentIncreased / 100)+1);
+        currentAttackCountdown = attackCountdownDefault * (100 / (attackSpeedPercentIncreased + 100)) ;
+        moveSpeedMax = moveSpeedDefault * ((moveSpeedPercentIncreased/100) +1);
+        
+        //armorMax = armorDefault * ((armorPercentIncreased / 100)+1);
     }
     public void LevelUp(float exp)
     {
