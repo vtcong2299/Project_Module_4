@@ -54,7 +54,8 @@ public class PlayerCtrl : Singleton<PlayerCtrl>, IOnGamePause, IOnGameRunning, I
         if (moveDirection.magnitude >= 0.01f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            transform.DORotateQuaternion(targetRotation, 0.3f); 
+            //transform.DORotateQuaternion(targetRotation, 0.3f); 
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10* Time.deltaTime);
         }
     }
 

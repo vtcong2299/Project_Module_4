@@ -12,9 +12,9 @@ public class GameData
     public bool hasBGM;
     public bool hasSFX;
     public float damageDefault = 50;
-    public float hpDefault = 1000;
+    public float hpDefault = 500;
     public float attackCountdownDefault = 4;
-    public float moveSpeedDefault = 4f;
+    public float moveSpeedDefault = 3.5f;
     //public float armorDefault = 20;
     public float lifeStealPercentDefault = 0;
 

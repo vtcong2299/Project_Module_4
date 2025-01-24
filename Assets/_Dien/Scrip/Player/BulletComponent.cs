@@ -13,6 +13,7 @@ public class BulletComponent : MonoBehaviour
     [SerializeField]
     LayerMask enemyLayer;
     bool canUpdate;
+    float damage;
 
     [SerializeField] float moveSpeed = 20f;
 
@@ -34,6 +35,7 @@ public class BulletComponent : MonoBehaviour
     }
     private void Update()
     {
+        damage = DataPlayer.Instance.damageMax;
         if (!canUpdate)
         {
             return;
@@ -60,7 +62,7 @@ public class BulletComponent : MonoBehaviour
             if (targetComponent != null)
             {
                 // Gọi hàm SendDamage trên đối tượng trúng
-                targetComponent.TakeDamage(DataPlayer.Instance.damageMax);
+                targetComponent.TakeDamage(damage);
                 LifeSteal();
                 onReachTarget.Invoke(gameObject);
             }
@@ -69,6 +71,6 @@ public class BulletComponent : MonoBehaviour
 
     void LifeSteal()
     {
-        PlayerCtrl.Instance.playerReceiveDame.HealHp(DataPlayer.Instance.damageMax);
+        PlayerCtrl.Instance.playerReceiveDame.HealHp(damage);
     }
 }

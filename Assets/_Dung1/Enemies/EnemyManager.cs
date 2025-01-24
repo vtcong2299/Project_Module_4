@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOnGameStart<List<IOnEnemyDie>>, IOnEnemyDie, IRespawnable
+public class EnemyManager : Singleton<EnemyManager>, IOnGameStart<ITransformGettable>, IOnGameStart<List<IOnEnemyDie>>, IOnEnemyDie, IRespawnable
 {
     //public static EnemyManager Instance {get; set;}
     List<IOnEnemyDie> dieCalls;
@@ -28,11 +28,11 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
     public GameObject[] enemyPrefabs;
     public Vector3 spawnPositionAbove;
     public Vector3 spawnPositionBelow;
-    public float spawnDistance = 20f;
-    public float timeBetweenUnitSpawns = 0.5f;
-    public float timeBetweenWaves = 5f;
-    int enemyEachSpawn = 3;
-    float timeBetweenEachSpawn = 3;
+    public float spawnDistance = 30f;
+    public float timeBetweenUnitSpawns = 5f;
+    public float timeBetweenWaves = 10f;
+    //int enemyEachSpawn = 3;
+    //float timeBetweenEachSpawn = 3;
     
 
     //private void Awake() {
@@ -61,11 +61,12 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
     List<GameObject>[] enemyPools;
     IEnumerator SpawnEnemies(Vector3 spawnOffsetOnForward)
     {
-        Vector3 spawnPosition = player._transform.position + spawnOffsetOnForward;
-        spawnPosition.x = 0;
 
         for (int i = 0; i < enemyInWave; i++)
         {
+            Vector3 spawnPosition = player._transform.position + spawnOffsetOnForward;
+            spawnPosition.x = 0;
+
             Vector3 randomOffset = new Vector3(Random.Range(-spawnDistance / 2, spawnDistance / 2), 0, 0);
             int randomIndex = Random.Range(0, enemyPrefabs.Length);
             GameObject enemyPrefab = enemyPrefabs[randomIndex];
@@ -83,10 +84,10 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
                 }
             }
             yield return new WaitForSeconds(timeBetweenUnitSpawns);
-            if ((i - 1) % enemyEachSpawn == 0)
-            {
-                yield return new WaitForSeconds(timeBetweenEachSpawn - timeBetweenUnitSpawns);
-            }
+            //if ((i - 1) % enemyEachSpawn == 0)
+            //{
+            //    yield return new WaitForSeconds(timeBetweenEachSpawn - timeBetweenUnitSpawns);
+            //}
         }
     }
 

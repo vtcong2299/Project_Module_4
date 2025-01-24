@@ -99,10 +99,6 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameSt
 
     void ToAttack()
     {
-        if (closestEnemy == null)
-        {
-            return;
-        }
         timeElapsed += Time.fixedDeltaTime;
         if (timeElapsed >= DataPlayer.Instance.currentAttackCountdown)
         {

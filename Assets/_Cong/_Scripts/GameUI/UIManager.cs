@@ -23,6 +23,8 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] UnityEngine.Transform selectedBuff;
     [SerializeField] List<Sprite> buffList = new List<Sprite>();
     [SerializeField] GameObject imageBuff;
+    [SerializeField] GameObject quitGamePopup;
+    [SerializeField] GameObject gameOverPopup;
     public bool hasPanelBuff;
     private void Update()
     {
@@ -42,44 +44,54 @@ public class UIManager : Singleton<UIManager>
     public void OnEnablePanelPauseGame()
     {
         Show(panelPauseGame, canvasGroupPauseGame, true);
+        AnimScaleOn(panelPauseGame);
     }
     public void OnDisablePanelPauseGame()
     {
         Hide(panelPauseGame, canvasGroupPauseGame, true);
+        AnimScaleOff(panelPauseGame);
     }
     public void OnEnablePanelQuitGame()
     {
         Show(panelQuitGame, canvasGroupQuitGame, false);
+        AnimScaleOn(quitGamePopup);
     }
     public void OnDisablePanelQuitGame()
     {
         Hide(panelQuitGame, canvasGroupQuitGame, false);
+        AnimScaleOff(quitGamePopup);
     }
     public void OnEnablePanelPowerUp()
     {
         Show(panelPowerUp, canvasGroupPowerUp, true);
-        hasPanelBuff =true;        
+        hasPanelBuff =true;    
+        AnimScaleOn(panelPowerUp);
     }
     public void OnDisablePanelPowerUp()
     {
         Hide(panelPowerUp, canvasGroupPowerUp, true);
-        hasPanelBuff = false;        
+        hasPanelBuff = false;   
+        AnimScaleOff(panelPowerUp);
     }
     public void OnEnablePanelGameOver()
     {
         Show(panelGameOver, canvasGroupGameOver, true);
+        AnimScaleOn(gameOverPopup);
     }
     public void OnDisablePanelGameOver()
     {
         Hide(panelGameOver, canvasGroupGameOver, true);
+        AnimScaleOff(gameOverPopup);
     }
     public void OnEnablePanelOptions()
     {
         Show(panelOptions, canvasGroupOptions, true);
+        AnimScaleOn(panelOptions);
     }
     public void OnDisablePanelOptions()
     {
         Hide(panelOptions, canvasGroupOptions, true);
+        AnimScaleOff(panelOptions);
     }
 
     public void LoadScene(string sceneName)
@@ -133,5 +145,14 @@ public class UIManager : Singleton<UIManager>
     void DisablePanel(GameObject panel)
     {
         panel.SetActive(false);
+    }
+    void AnimScaleOn(GameObject panel)
+    {
+        panel.transform.DOScale(Vector3.zero, 0).SetUpdate(UpdateType.Normal, true);
+        panel.transform.DOScale(Vector3.one, 0.3f).SetUpdate(UpdateType.Normal, true);
+    }
+    void AnimScaleOff(GameObject panel)
+    {
+        panel.transform.DOScale(Vector3.zero, 0.2f).SetUpdate(UpdateType.Normal, true);
     }
 }

@@ -7,6 +7,7 @@ public class PanelGamePlay : MonoBehaviour
 {
     [SerializeField] Button pauseButton;
     [SerializeField] Text txtLevel;
+    [SerializeField] Text txtWave;
     [SerializeField] Slider exp;
 
     private void Awake()
@@ -17,15 +18,20 @@ public class PanelGamePlay : MonoBehaviour
     {
         ChangeLevel();
         ChangeSliderValue();
+        ChangeWave();
     }
     void ClickPauseButton()
     {
         AudioManager.Instance.SoundClickButton();
         UIManager.Instance.OnEnablePanelPauseGame();
     }
-    public void ChangeLevel()
+    void ChangeLevel()
     {
         txtLevel.text =""+ DataPlayer.Instance.curentLevel;
+    }
+    void ChangeWave()
+    {
+        txtWave.text ="Wave - "+ EnemyManager.Instance.currentWave;
     }
     public void ChangeSliderValue()
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerReceiveDame : DameReceiver
 {
     [SerializeField] DataPlayer dataPlayer;
+    [SerializeField] PlayerAnim anim;
 
     public void StartPlayerDameReceive()
     {
@@ -16,7 +17,7 @@ public class PlayerReceiveDame : DameReceiver
     }
     public void HealHp(float damage)
     {
-        hp += damage * dataPlayer.lifeStealPercentMax;
+        hp += damage * (dataPlayer.lifeStealPercentMax/100);
         if (hp > dataPlayer.hpMax)
         {
             hp = dataPlayer.hpMax;
