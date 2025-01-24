@@ -10,9 +10,6 @@ public class PlayerReceiveDame : DameReceiver
     public void StartPlayerDameReceive()
     {
         hp = dataPlayer.hpMax;
-    }
-    private void Update()
-    {
         UpdateHP.Instance.ToUpdateHP(hp);
     }
     public void HealHp(float damage)
@@ -31,6 +28,7 @@ public class PlayerReceiveDame : DameReceiver
         if (other.gameObject.CompareTag("Enemy"))
         {
             Receiver(other.gameObject.GetComponent<Enemy>().GetDamage());
+            UpdateHP.Instance.ToUpdateHP(hp);
             if (IsDead())
             {
                 anim.SetDead();
