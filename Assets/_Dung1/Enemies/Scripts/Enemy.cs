@@ -15,9 +15,17 @@ public class Enemy : MonoBehaviour
 
     float HPSave;
 
+    Collider enemyCollider;
+
     private void Awake() {
         animator = GetComponent<Animator>();
         HPSave = HP;
+        enemyCollider = GetComponent<Collider>();
+    }
+
+    private void OnEnable()
+    {
+        enemyCollider.enabled = true;
     }
 
     List<IOnEnemyDie> onDie;
@@ -59,6 +67,7 @@ public class Enemy : MonoBehaviour
             {
                 act.OnEnemyDie(gameObject, exp);
             }
+            enemyCollider.enabled = false;
             animator.SetTrigger("isDead");
             StartCoroutine(DeactiveAfterDelay());
         } else {
