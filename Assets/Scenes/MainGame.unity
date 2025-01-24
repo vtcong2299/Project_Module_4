@@ -222,6 +222,7 @@ MonoBehaviour:
     - {fileID: 27712167}
     - {fileID: 540435407}
     - {fileID: 773828302}
+    - {fileID: 195717390}
     - {fileID: 1062839596}
 --- !u!4 &21976042
 Transform:
@@ -6382,7 +6383,6 @@ MonoBehaviour:
   rb: {fileID: 1075868734}
   playerAnim: {fileID: 1075868731}
   playerReceiveDame: {fileID: 1075868737}
-  playerAttack: {fileID: 1075868733}
   playerData: {fileID: 1075868735}
   moveSpeed: 3.5
 --- !u!114 &1075868733

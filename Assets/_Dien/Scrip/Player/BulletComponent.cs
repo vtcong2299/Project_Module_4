@@ -30,7 +30,10 @@ public class BulletComponent : MonoBehaviour
     IEnumerator SetTheDirection()
     {
         yield return new WaitUntil(() => target!=null && onReachTarget!=null && origin!=null);
-        direction = (target.someTarget.transform.position - transform.position).normalized;
+        if (target.someTarget != null)
+        {
+            direction = (target.someTarget.transform.position - transform.position).normalized;
+        }
         canUpdate = true;
     }
     private void Update()

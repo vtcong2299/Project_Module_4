@@ -10,7 +10,6 @@ public class PlayerCtrl : Singleton<PlayerCtrl>, IOnGamePause, IOnGameRunning, I
     [SerializeField] Rigidbody rb;
     [SerializeField] PlayerAnim playerAnim;
     public PlayerReceiveDame playerReceiveDame;
-    public PlayerAttack playerAttack;
     [SerializeField] DataPlayer playerData;
     float vertical;
     float horizontal;
@@ -24,7 +23,7 @@ public class PlayerCtrl : Singleton<PlayerCtrl>, IOnGamePause, IOnGameRunning, I
 
     private void Update()
     {
-        if (gamePause || playerAnim.IsSpawning() || playerAnim.IsAttacking())
+        if (gamePause || playerReceiveDame.IsDead() || playerAnim.IsSpawning() || playerAnim.IsAttacking())
         {
             return;
         }

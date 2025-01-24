@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using System;
 
-public class UIManager : Singleton<UIManager>
+public class UIManager : Singleton<UIManager>, IOnGameOver
 {
     public PanelOption panelOption;
     public PanelGamePlay panelGP;
@@ -26,6 +27,9 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] GameObject quitGamePopup;
     [SerializeField] GameObject gameOverPopup;
     public bool hasPanelBuff;
+
+    public Action onGameOverAction => () => OnEnablePanelGameOver();
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))

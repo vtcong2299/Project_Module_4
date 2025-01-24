@@ -24,9 +24,24 @@ public class PlayerReceiveDame : DameReceiver
         }
     }
     private void OnCollisionEnter(Collision other) {
+        if (IsDead())
+        {
+            return;
+        }
         if (other.gameObject.CompareTag("Enemy"))
         {
             Receiver(other.gameObject.GetComponent<Enemy>().GetDamage());
+            if (IsDead())
+            {
+                anim.SetDead();
+                StartCoroutine(DelayDead());
+            }
         }
+    }
+
+    IEnumerator DelayDead()
+    {
+        yield return new WaitForSeconds(1.5f);
+        GameManager.Instance.SetGameState(GameState.GameOver);
     }
 }

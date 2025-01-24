@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.UI;
 
 public class UpdateHP :Singleton<UpdateHP>
@@ -6,7 +5,7 @@ public class UpdateHP :Singleton<UpdateHP>
     Slider HPBar;
     void Start()
     {
-        HPBar = GetComponent<Slider>();        
+        HPBar = GetComponent<Slider>();
     }
     private void Update()
     {
