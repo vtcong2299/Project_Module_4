@@ -12,8 +12,8 @@ public class PlayerAttack : MonoBehaviour, IOnGameStart<IRespawnable>, IOnGameSt
 
     [SerializeField] GameObject targerRing;
     PlayerAnim playerAnim;
-    float timeElapsed = 0f;
-    bool canAttack;
+    public float timeElapsed = 0f;
+    public bool canAttack;
 
     IRespawnable respawner;
     Transform checkPoint;

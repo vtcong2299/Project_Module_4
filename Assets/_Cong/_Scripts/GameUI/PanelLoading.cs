@@ -42,7 +42,7 @@ public class PanelLoading : MonoBehaviour
 
             if (asyncOperation.progress >= 0.9f)
             {
-                DOTween.To(() => fadeBG.color, x => fadeBG.color = x, new Color(0.75f, 0.75f, 0.75f, 1), 1.5f).SetUpdate(true).OnComplete(() =>
+                DOTween.To(() => fadeBG.color, x => fadeBG.color = x, new Color(0.75f, 0.75f, 0.75f, 1), 2f).SetUpdate(true).OnComplete(() =>
                 {
                     asyncOperation.allowSceneActivation = true;
                 });

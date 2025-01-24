@@ -9,6 +9,9 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] AudioSource audioSFX;
     [SerializeField] AudioClip clickButtonClip;
     [SerializeField] AudioClip bgmClip;
+    [SerializeField] AudioClip getDameClip;
+    [SerializeField] AudioClip gameOverClip;
+    [SerializeField] AudioClip levelUpClip;
 
     private void Start()
     {
@@ -46,5 +49,20 @@ public class AudioManager : Singleton<AudioManager>
         audioBGM.clip = bgmClip;
         audioBGM.loop = true;
         audioBGM.Play();
+    }
+    public void SoundGetDame()
+    {
+        audioSFX.clip = getDameClip;
+        audioSFX.Play();
+    }
+    public void SoundGameOver()
+    {
+        audioSFX.clip = gameOverClip;
+        audioSFX.Play();
+    }
+    public void SoundLevelUp()
+    {
+        audioSFX.clip = levelUpClip;
+        audioSFX.Play();
     }
 }

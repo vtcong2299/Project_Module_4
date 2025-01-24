@@ -136,10 +136,11 @@ public class EnemyManager : Singleton<EnemyManager>, IOnGameStart<ITransformGett
     //Hàm chuyển wave
     private IEnumerator NextWave()
     {
+        currentWave++;
+        UIManager.Instance.OnNextWave();
         enemyInWave += currentWave * 2;
         enemyAlive = enemyInWave * 2;
         yield return new WaitForSeconds(timeBetweenWaves);
-        currentWave++;
         StartCoroutine(SpawnEnemies(new Vector3(0, 0, spawnDistance)));
         StartCoroutine(SpawnEnemies(-new Vector3(0, 0, spawnDistance)));
     }

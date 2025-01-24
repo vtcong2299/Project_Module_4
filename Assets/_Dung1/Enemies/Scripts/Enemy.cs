@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
         if (isDead){
             return;
         }
-
+        AudioManager.Instance.SoundGetDame();
         HP -= damageAmount;
 
         if (HP <= 0)

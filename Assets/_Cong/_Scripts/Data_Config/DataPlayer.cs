@@ -85,6 +85,7 @@ public class DataPlayer : Singleton<DataPlayer>, IOnEnemyDie, IOnGameStart<IGame
         expMax = exps[curentLevel-1];
         if (this.exp > expMax)
         {
+            AudioManager.Instance.SoundLevelUp();
             UIManager.Instance.OnEnablePanelPowerUp();
             curentLevel++;
             if (curentLevel >= levelMax)

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -25,6 +26,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] GameObject imageBuff;
     [SerializeField] GameObject quitGamePopup;
     [SerializeField] GameObject gameOverPopup;
+    [SerializeField] GameObject nextWavePopup;
     public bool hasPanelBuff;
     private void Update()
     {
@@ -93,7 +95,17 @@ public class UIManager : Singleton<UIManager>
         Hide(panelOptions, canvasGroupOptions, true);
         AnimScaleOff(panelOptions);
     }
-
+    public void OnNextWave()
+    {
+        nextWavePopup.SetActive(true);
+        nextWavePopup.transform.DOScale(Vector3.zero, 0).SetUpdate(UpdateType.Normal, true);
+        DOVirtual.DelayedCall(3, () =>
+        nextWavePopup.transform.DOScale(Vector3.one, 0.5f).SetUpdate(UpdateType.Normal, true));
+        DOVirtual.DelayedCall(8, () =>
+            nextWavePopup.transform.DOScale(Vector3.zero, 0.5f).SetUpdate(UpdateType.Normal, true)
+            .OnComplete(() => nextWavePopup.SetActive(false))
+        );
+    }
     public void LoadScene(string sceneName)
     {
         panelLoadScene.gameObject.SetActive(true);
