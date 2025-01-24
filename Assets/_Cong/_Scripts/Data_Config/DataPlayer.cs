@@ -56,6 +56,7 @@ public class DataPlayer : Singleton<DataPlayer>, IOnEnemyDie, IOnGameStart<IGame
         //armorPercentIncreased += buff.armor;
         lifeStealPercentMax += buff.lifeSteal;
         RecalculateStats();
+        UpdateHP.Instance.SetHPBarMaxValue();
     }
     public void ResetDataPlayer()
     {

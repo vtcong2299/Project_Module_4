@@ -1,19 +1,20 @@
-using UnityEngine;
 using UnityEngine.UI;
 
 public class UpdateHP :Singleton<UpdateHP>
 {
     Slider HPBar;
-    void Start()
-    {
-        HPBar = GetComponent<Slider>();        
-    }
-    private void Update()
-    {
-        HPBar.maxValue = DataPlayer.Instance.hpMax;
-    }
     public void ToUpdateHP(float currentHP)
     {
+        if (HPBar == null)
+        {
+            HPBar = GetComponent<Slider>();
+            SetHPBarMaxValue();
+        }
         HPBar.value = currentHP;
+    }
+
+    public void SetHPBarMaxValue()
+    {
+        HPBar.maxValue = DataPlayer.Instance.hpMax;
     }
 }

@@ -3,8 +3,9 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
+using System;
 
-public class UIManager : Singleton<UIManager>
+public class UIManager : Singleton<UIManager>, IOnGameOver
 {
     public PanelOption panelOption;
     public PanelGamePlay panelGP;
@@ -28,6 +29,9 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] GameObject gameOverPopup;
     [SerializeField] GameObject nextWavePopup;
     public bool hasPanelBuff;
+
+    public Action onGameOverAction => () => OnEnablePanelGameOver();
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))
@@ -79,6 +83,7 @@ public class UIManager : Singleton<UIManager>
     {
         Show(panelGameOver, canvasGroupGameOver, true);
         AnimScaleOn(gameOverPopup);
+        AudioManager.Instance.SoundGameOver();
     }
     public void OnDisablePanelGameOver()
     {

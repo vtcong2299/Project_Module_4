@@ -128,7 +128,7 @@ public class EnemyManager : Singleton<EnemyManager>, IOnGameStart<ITransformGett
             enemy.SetActive(false);
         }
         enemies.Clear();
-        StartCoroutine(NextWave());
+        StartCoroutine(RestartWave());
     }
 
     //Hàm kiểm tra xem toàn bộ enemy trong wave đã chết hết chưa, nếu hết rồi thì chuyển wave hoặc chuyển round nếu đã là wave cuối
@@ -139,6 +139,14 @@ public class EnemyManager : Singleton<EnemyManager>, IOnGameStart<ITransformGett
         currentWave++;
         UIManager.Instance.OnNextWave();
         enemyInWave += currentWave * 2;
+        enemyAlive = enemyInWave * 2;
+        yield return new WaitForSeconds(timeBetweenWaves);
+        StartCoroutine(SpawnEnemies(new Vector3(0, 0, spawnDistance)));
+        StartCoroutine(SpawnEnemies(-new Vector3(0, 0, spawnDistance)));
+    }
+
+    IEnumerator RestartWave()
+    {
         enemyAlive = enemyInWave * 2;
         yield return new WaitForSeconds(timeBetweenWaves);
         StartCoroutine(SpawnEnemies(new Vector3(0, 0, spawnDistance)));

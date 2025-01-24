@@ -10,9 +10,6 @@ public class PlayerReceiveDame : DameReceiver
     public void StartPlayerDameReceive()
     {
         hp = dataPlayer.hpMax;
-    }
-    private void Update()
-    {
         UpdateHP.Instance.ToUpdateHP(hp);
     }
     public void HealHp(float damage)
@@ -22,11 +19,28 @@ public class PlayerReceiveDame : DameReceiver
         {
             hp = dataPlayer.hpMax;
         }
+        UpdateHP.Instance.ToUpdateHP(hp);
     }
     private void OnCollisionEnter(Collision other) {
+        if (IsDead())
+        {
+            return;
+        }
         if (other.gameObject.CompareTag("Enemy"))
         {
             Receiver(other.gameObject.GetComponent<Enemy>().GetDamage());
+            UpdateHP.Instance.ToUpdateHP(hp);
+            if (IsDead())
+            {
+                anim.SetDead();
+                StartCoroutine(DelayDead());
+            }
         }
+    }
+
+    IEnumerator DelayDead()
+    {
+        yield return new WaitForSeconds(1.5f);
+        GameManager.Instance.SetGameState(GameState.GameOver);
     }
 }
