@@ -29,8 +29,11 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
     public Vector3 spawnPositionAbove;
     public Vector3 spawnPositionBelow;
     public float spawnDistance = 20f;
-    public float timeBetweenSpawns = 0.5f;
+    public float timeBetweenUnitSpawns = 0.5f;
     public float timeBetweenWaves = 5f;
+    int enemyEachSpawn = 3;
+    float timeBetweenEachSpawn = 3;
+    
 
     //private void Awake() {
     //    if (Instance != null && Instance != this)
@@ -59,10 +62,11 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
     IEnumerator SpawnEnemies(Vector3 spawnOffsetOnForward)
     {
         Vector3 spawnPosition = player._transform.position + spawnOffsetOnForward;
+        spawnPosition.x = 0;
 
         for (int i = 0; i < enemyInWave; i++)
         {
-            Vector3 randomOffset = new Vector3(Random.Range(-spawnDistance / 4, spawnDistance / 4), 0, 0);
+            Vector3 randomOffset = new Vector3(Random.Range(-spawnDistance / 2, spawnDistance / 2), 0, 0);
             int randomIndex = Random.Range(0, enemyPrefabs.Length);
             GameObject enemyPrefab = enemyPrefabs[randomIndex];
             if (enemyPools[randomIndex].Count == 0)
@@ -78,7 +82,11 @@ public class EnemyManager : MonoBehaviour, IOnGameStart<ITransformGettable>, IOn
                     CreateNewEnemy(enemyPrefab, spawnPosition + randomOffset, randomIndex);
                 }
             }
-            yield return new WaitForSeconds(timeBetweenSpawns);
+            yield return new WaitForSeconds(timeBetweenUnitSpawns);
+            if ((i - 1) % enemyEachSpawn == 0)
+            {
+                yield return new WaitForSeconds(timeBetweenEachSpawn - timeBetweenUnitSpawns);
+            }
         }
     }
 
